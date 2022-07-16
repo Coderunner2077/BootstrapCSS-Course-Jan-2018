@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <title>Exemple 3</title>
+    <style type="text/css">
+      body { background-color:#DDD; }
+      img { width: 100%; }
+      a:focus { outline:0; } 
+      #content div { display: none; }
+    </style>
+  </head>
+
+<body>
+
+  <br>
+  <div class="container">
+    <div id="content" class="row">
+        <div class="col-lg-2"><img src="images/t1.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t2.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t3.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t4.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t5.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t6.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t7.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t8.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t9.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t10.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t11.jpg" alt="Tigre" class="img-thumbnail"></div>
+        <div class="col-lg-2"><img src="images/t12.jpg" alt="Tigre" class="img-thumbnail"></div>
+    </div>
+    <div id="page_navigation"> </div>
+  </div>
+
+  <script src="bootstrap/js/jquery.js"></script>
+  <script>
+    var show_per_page = 3;
+    var current_page = 1,
+        lastImg = current_page * show_per_page,
+        selector = '';
+
+    $(function() {
+      $('#content').children().css('display', 'none');
+      $('img').each(function(index, elem) {
+        elem.parentNode.id = 'img' + (index + 1);
+      });
+
+      var nb_total = $('#content img').length,
+        last_page = nb_total / show_per_page;
+      $('#page_navigation').append('<ul class="pagination"></ul>');
+      var li_html = '';
+      li_html += '<li><a href="#" id="page_prev">&laquo;</a><li>';
+      for(var i = 1; i <= last_page; i++) {
+        li_html += '<li><a href="#" id="page_' + i + '">' + i + '</a></li>';
+      }  
+      li_html += '<li><a href="#" id="page_next">&raquo;</a></li>';
+      $('#page_navigation ul').html(li_html);
+
+      $('#page_' + current_page).parent().addClass('active');
+      for(i = lastImg - show_per_page + 1; i <= lastImg; i++)
+        selector += '#img' + i + ', ';
+      selector = selector.slice(0, -2);
+      $(selector).css('display', 'block');
+      $('.pagination a').on('click', function(e) {
+        e.preventDefault();
+        var id = e.target.id,
+            clickedPage = id.substring('page_'.length),
+            classe = e.target.parentNode.className,
+            activePage = parseInt($('.active a').attr('id').substring('page_'.length), 10),
+            newPage,
+            change = false;
+        if(classe !== 'active') {
+          var img_show_selector = '', img_hide_selector = '', lastImg, lastImgHide, img_show_selector, img_hide_selector;
+
+          if(clickedPage == 'prev' && activePage > 1) {
+            newPage = activePage - 1;
+            change = true;
+          }
+          else if(clickedPage == 'next' && activePage < last_page) {
+            newPage = activePage + 1;
+            change = true;
+          }
+          else if(clickedPage != 'next' && clickedPage != 'prev') {
+            newPage = parseInt(clickedPage, 10);
+            change = true;
+          }
+          if(change === true) {
+            lastImg = newPage * show_per_page;
+            lastImgHide = activePage * show_per_page;
+            for(i = lastImg; i > lastImg - show_per_page; i--)
+            img_show_selector += '#img' + i + ', ';
+            for(i = lastImgHide; i > lastImgHide - show_per_page; i--)
+            img_hide_selector += '#img' + i + ', ';
+            $(img_hide_selector.slice(0, -2)).css('display', 'none');
+            $(img_show_selector.slice(0, -2)).css('display', 'block'); 
+            $('.active').removeClass('active');
+            $('#page_' + newPage).parent().addClass('active');
+          }
+        }
+      });
+
+    });
+  </script>
+</body>
+</html>

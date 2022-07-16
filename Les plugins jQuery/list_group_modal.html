@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+  	<head>
+    	<meta charset="utf-8">
+    	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    	<style type="text/css">
+    	</style>
+    	<title>List-group and modal</title>
+  	</head>
+
+  	<body>
+  		<div class="container">
+  			<div class="list-group">
+  				<a class="list-group-item" href="#infos" data-toggle="modal">
+  					Tigre de Sibérie
+  					<span class="badge">120</span>
+  				</a>
+  				<div class="modal fade" id="infos" role="dialog" aria-labelledby="modalTitre" aria-hidden="true">
+  					<div class="modal-dialog">
+  						<div class="modal-content">
+  							<div class="modal-header">
+  								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  								<h4 class="modal-title" id="modalTitre">Plus d'informations sur le Tigre de Sibérie</h4>
+  							</div>
+  							<div class="modal-body">
+  								<blockquote>
+         							 Les tigres de Sibérie pèsent de 180 à 350 kg pour les mâles et de 100 à 200 kg pour les femelles. 
+									Le plus gros tigre de Sibérie, tué en 1950, atteignait les 384 kg. Le Tigre de Sibérie est le troisième plus 
+									gros prédateur terrestre derrière l'ours kodiak et l'ours polaire. La longueur totale du corps avec la queue 
+									est comprise entre 2,7 et 3,8 m pour les mâles et entre 2,4 et 2,75 m pour les femelles. La longueur du crâne 
+									est de 341 à 383 mm pour les mâles et 279 à 318 mm pour les femelles.<hr>
+          							<small class="pull-right">Wikipedia</small>
+        						</blockquote>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<a class="list-group-item" href="#">
+        			Tigre de Moldavie
+        			<span class="badge">0</span>
+        		</a>
+        		<a class="list-group-item" href="#infos2" data-toggle="modal">
+        			Tigre de Catalagne
+        			<span class="badge">0</span>
+        		</a>
+        		<div class="modal fade" id="infos2" role="dialog" aria-labelledby="modalTitre2" aria-hidden="true">
+        			<div class="modal-dialog">
+        				<div class="modal-content">
+        					<div class="modal-header">
+        						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        						<h4 class="modal-title" id="modalTitre2">Moins d'infos sur le Tigre de Catalagne</h4>
+        					</div>
+        					<div class="modal-body">
+        						<blockquote>
+         							Les tigres de Catalagne pèsent de 180 à 350 kg pour les mâles et de 100 à 200 kg pour les femelles. 
+									Le plus gros tigre de Sibérie, tué en 1950, atteignait les 384 kg. Le Tigre de Sibérie est le troisième plus 
+									gros prédateur terrestre derrière l'ours kodiak et l'ours polaire. La longueur totale du corps avec la queue 
+									est comprise entre 2,7 et 3,8 m pour les mâles et entre 2,4 et 2,75 m pour les femelles. La longueur du crâne 
+									est de 341 à 383 mm pour les mâles et 279 à 318 mm pour les femelles.<hr>
+          							<small class="pull-right">Bullshit</small>
+        						</blockquote>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+
+        <script src="bootstrap/js/jquery.js"></script>
+  		<script src="bootstrap/js/bootstrap.min.js"></script>
+    </body>
+</html>

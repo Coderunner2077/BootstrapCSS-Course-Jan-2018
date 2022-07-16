@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+  	<head>
+    	  <meta charset="utf-8">
+    	  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    	  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    	  <style type="text/css">
+            body { padding-top: 100px; }
+    	  </style>
+    	  <title>Popover 3</title>
+  	</head>
+
+  	<body>
+  		<div class="container">
+            <div class="well">
+                <img id="img" data-toggle="popover" data-content="Vive la République !" title="Attention à la marche" src="images/visage.png">
+                <a href="#" id="pop" class="btn btn-info pull-right">Cliquer sur moi plusieurs fois pour le popover</a>
+            </div>
+        </div>
+
+        <script src="bootstrap/js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script>
+            $(function() {
+                $('#img').popover({ trigger: 'manual' });
+                $('#pop').click(function() {
+                    $('#img').popover('toggle');
+                });
+            });
+        </script>
+    </body>
+</html>

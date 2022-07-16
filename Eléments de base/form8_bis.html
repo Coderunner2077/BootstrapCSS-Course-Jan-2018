@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      [class*="col"] { margin-bottom: 20px; }
+      img { width: 100%; }
+    </style>
+    <title>Formulaire : stylisation des champs avec des icônes</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="col-sm-6 form-horizontal">
+          <div class="form-group">
+              <legend>Validation, erreur et succès</legend>
+          </div>
+          <div class="row">
+              <div class="form-group has-error has-feedback">
+                  <label class="control-label col-lg-2" for="idErreur">Erreur</label>
+                  <div class="col-lg-10">
+                      <input type="text" class="form-control" id="idErreur">
+                      <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                      <span class="help-block">Corrigez l'erreur s'il vous plaît</span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group has-warning has-feedback">
+                  <label class="control-label col-lg-2" for="idWarning">Avertissement</label>
+                  <div class="col-lg-10">
+                      <input type="text" class="form-control" id="idWarning">
+                      <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                      <span class="help-block">Il y a un problème dans la saisie</span>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="form-group has-success has-feedback">
+                  <label class="control-label col-lg-2" for="idSuccess">Réussite</label>
+                  <div class="col-lg-10">
+                      <input type="text" class="form-control" id="idSuccess">
+                      <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                      <span class="help-block">Saisie correcte</span>
+                  </div>
+              </div>
+          </div>
+      </form>
+    </div>
+  </body>
+</html>

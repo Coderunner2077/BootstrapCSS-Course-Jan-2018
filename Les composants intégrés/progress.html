@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <title>Progress</title>
+  </head>
+  <body>
+  	<div class="container">
+  	  <div class="progress">
+  	    <div class="progress-bar"></div>
+  	  </div>
+  	  <input type="button" class="btn btn-primary" id="animer" value="Animer">
+  	</div>
+  	<script src="bootstrap/js/jquery.js"></script>
+  	<script>
+  		function timer(width, duree) {
+  			$('.progress-bar').animate({'width': width + '%'}, duree, 'linear', function() {
+  				if(width < 100) {
+  					setTimeout(function() {
+  						timer(width + 10);
+  					}, 2000);
+  				}
+  			});
+  		}
+
+  		$(function () {
+  			$('#animer').click(function() {
+  				timer(100, 10000);
+  			});
+  		});
+  	</script>
+  </body>
+</html>

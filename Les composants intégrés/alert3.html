@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <title>Alerte 3</title>
+  </head>
+  <body>
+  	<div class="container">
+  	  <div class="alert alert-warning col-lg-4" style="display: none;">
+  	    <button type="button" class="close">&times;</button>
+  	    <h4>Attention !</h4> Petite information importante !
+  	  </div>
+  	  <div class="col-lg-3">
+  	    <input type="button" class="btn btn-primary" id="afficher" value="Afficher l'alerte">
+  	  </div>
+  	</div>
+
+    <script src="bootstrap/js/jquery.js"></script>
+    <script>
+    	$('#afficher').click(function() {
+    		$('.alert').show('slow');
+    		$(this).hide('slow');
+    	});
+
+    	$('.close').click(function() {
+    		$('.alert').hide('slow');
+    		$('#afficher').show('slow');
+    	});
+    </script>
+  </body>
+</html>

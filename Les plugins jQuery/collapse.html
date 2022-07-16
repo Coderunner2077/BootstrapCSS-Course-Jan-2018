@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+    </style>
+    <title>Collapse</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <a>Changer</a>
+      <div id="item" class="collapse">Contenu</div>
+    </div>
+      
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script>
+      $(function() {
+        $('a').click(function() {
+          $('#item').collapse('toggle');
+        });
+
+        $('#item').on('shown.bs.collapse', function() {
+          alert('On me voit');
+        });
+
+        $('#item').on('hidden.bs.collapse', function() {
+          alert('On me voit plus');
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      [class*="col"] { margin-bottom: 20px; }
+      img { width: 100%; }
+    </style>
+    <title>Formulaire en ligne avec input-group</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">€</span>
+            <input type="text" class="form-control" value="100">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" style="text-align: right;" value="123.50">
+            <span class="input-group-addon">$</span>
+          </div>
+        </div>  
+        <div class="form-group">
+          <div class="input-group">
+            <span class="input-group-addon">Unit</span>
+            <input type="text" class="form-control" style="text-align: right;" value="1.2350" size="10">
+            <span class="input-group-addon">€ / $</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

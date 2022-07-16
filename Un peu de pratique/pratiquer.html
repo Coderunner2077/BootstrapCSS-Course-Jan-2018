@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<title>Un peu de pratique</title>
+</head>
+<body>
+
+                                                                          <h1>Un peu de pratique</h1>
+
+<h2>I./ Combiner les formats et exemples de page</h2>
+
+Je vais maintenant utiliser ce que j'ai vu dans les chapitres précédents pour construire une page pratique. 
+
+<h3>1.) Combinaison de classes "col-*"</h3>
+
+J'ai vu des mises en page utilisant sélectivement les classes pour les colonnes pour les différents formats de supports. Je vais à présent envisager leur
+combinaison pour gérer certains cas. Dans la page à réaliser, je veux avoir des petites photos côte à côte. Supposons que je parte de cette structure pour cette
+partie de la page :
+
+Réf <a href="base.html" target="_blank">Structure de base</a>
+
+Le rendu sur grand écran est parfait avec 6 photos sur la largeur. Mais ça se gâte quand je rétrécis la fenêtre, puisque je sais qu'en dessous de 1200 pixels les
+éléments s'empilent. Du coup je me retrouve avec une image sur la largeur, et comme je les ai prévues en basse résolution, elle pixellise.
+
+L'idéal serait d'avoir : 
+
+<strong>
+	-	Sur moyen et grand écran: 6 images sur la largeur
+	-	Sur tablette : 4 images sur la largeur
+	-	Sur smartphone: 3 images sur la largeur
+</strong>
+
+Comment réaliser cela ? Tout simplement en combinant les classes <strong>col-*</strong> : 
+
+Réf <a href="base.html" target="_blank">Structure de base</a>
+
+J'ai donc facilement obtenu une adaptation de la présentation de mes photos en fonction du support utilisé pour les visualiser.
+
+<h3>2.) Page d'exemple</h3>
+
+Construisons maintenant une page complète qui intègre la partie que je viens de traiter :
+
+Réf <a href="exemple_page.html" target="_blank">Exemple de page</a>
+
+<h4>a./ La classe page-header</h4>
+
+Cette classe fixe quelques valeurs (cf header de l'exemple précédent:
+
+<strong>
+.page-header {
+	padding-bottom: 9px;
+	margin: 40px 0 20px;
+	border-bottom: 1px solid #eee;
+}
+</strong>
+
+<h4>b./ Quelques mises en valeur</h4>
+
+J'ai placé du texte abrégé entre les balises &lt; abbr>,  et lors du survol de ce texte, alor le contenu de l'attribut <strong>title</strong> apparaît à côté. 
+
+<h4>c./ Une citation</h4>
+
+Un des paragraphes comportent une citation (&lt; blocquote>) et le mot Wikipédia décalé à droite : 
+
+<strong>
+&lt; small class="pull-right">Wikipedia&lt; /small>&lt; br>
+</strong>
+
+Le résultat est sobre et élégant.
+
+La référence inférieure "Wikipédia" a été renvoyée à droite avec la classe <strong>pull-right</strong> qui se contente de rendre flottant à droite : 
+
+<strong>
+.pull-right {
+	float: right !important;
+}
+</strong>
+
+<h4>d./ Une adresse</h4>
+
+Dans la partie inférieure gauche figure une adresse. J'ai simplement utilisé la balise &lt; address>.
+
+<strong>
+&lt; address>
+   &lt; p>Vous pouvez me contacter à cette adresse :&lt; /p>
+   &lt; p> &lt;strong>Tigrou Alfred&lt; /strong>&lt; br>
+     Allée des fauves&lt; br>
+     28645 Félins-sur-Loire&lt; br>
+&lt; /address>
+</strong>
+
+<h4>e./ Juste un peu de style ajouté</h4>
+
+Pour donner plus d'harmonie à cette page, j'ai dû ajouter une marge basse de 20px à tous les <strong>col</strong> et j'ai obligé les images à occuper tout
+l'espace disponible :
+
+<strong>
+	[class*="col"] { margin-bottom: 20px; }
+	img { width: 100%; }
+</strong>
+
+C'est le seul élément de style ajouté à cette page.
+
+<h2>II./ Cas pratiques et classes "responsive"</h2>
+<h3>1.) Exercice 1</h3>
+
+Le but est d'obtenir une mise en page pour grand écran identique à celle de la figure suivante : 
+
+<figure>
+<img src="maquette.jpg" alt="Maquette">
+<figcaption>Résultat à obtenir</figcaption>
+</figure>
+
+Réf <a href="exercice1.html" target="_blank">Exercice 1</a>
+
+Maintenant, la question à se poser est: comment va réagir cette structure quand on va réduire la fenêtre ? Comme j'ai mis des classes <strong>col-lg-*</strong>,
+tout va s'empiler sous 1200 pixels. Si cet effet me convient, c'est parfait. Mais supposons que, sur tablette je veuille une structure similaire à la figure 
+suivante :
+
+<figure>
+<img src="maquette2.jpg" alt="Maquette">
+<figcaption>Affichage à obtenir sur tablette</figcaption>
+</figure>
+
+Réf <a href="exercice1_bis.html" target="_blank">Exercice 1 bis</a>
+
+J'ai remplacé les classes <strong>col-lg-*</strong> par des classes <strong>col-md-*</strong> pour avoir un comportement de base pour écrans moyens et grands. J'ai
+ensuite introduit des classes <strong>col-sm-*</strong> pour avoir le comportement désiré sur tablette. En revanche, la ligne 31 mérite quelques commentaires
+particuliers. Pour le média tablette, j'ai des éléments flottants qui se succèdent avec des comportements qui ne sont pas forcément ceux que l'on souhaite. La 
+figure suivante montre le résultat sans cette ligne de code :
+
+<figure>
+<img src="maquette3.jpg" alt="Maquette">
+<figcaption>Résultat sans la classe "clearfix"</figcaption>
+</figure>
+
+Que fait cette classe <strong>clearfix</strong> ? Elle réinitialise les éléments flottants qui suivent pour les ramener dans le flux normal, et éviter qu'ils 
+viennent recouvrir les éléments précédents. J'ai donc écrit cette ligne de code juste après les balise &lt; section>&lt; /section> :
+
+<strong>
+&lt; div class="clearfix visible-sm-block">&lt; /div>
+</strong>
+
+Remarque : apparemment, cette ligne de code n'est nécessaire que lorsqu'il y a d'autres éléments (possédant la même classe supérieure que celle de l'élément
+précédant) qui suivent directement l'élément qui a au moins deux classes de positionnement différentes (ex <strong>col-lg-* col-mg-*</strong>). En l'occurence, le
+second bloc <strong>col-md-2</strong> avec les deux asides se situe juste après le bloc <strong>section</strong>, dans le même <strong>row</strong>.
+
+Je vais voir maintenant la classe <strong>visible-sm...</strong>
+
+<h4>a./ Les classes "responsives"</h4>
+
+Pour poursuivre l'exercice précédent, il faut d'abord évoquer quelques classes très utiles qui vont me permettre non plus de positionner différemment les 
+éléments, mais carrément de les faire disparaître ou appraître. Voici le tableau très bien fait tiré de la documentation, visible à la figure suivante :
+
+<figure>
+<img src="visible_hidden.png" alt="Classes visible et hidden">
+<figcaption>Les classes "responsive"</figcaption>
+</figure>
+
+Les classes de visibilité se déclinent en trois sortes selon le type de visualisation :
+
+<figure>
+<img src="visible_type.jpg" alt="Les classes de visibilité">
+<figcaption>Les classes de visibilité</figcaption>
+</figure>
+
+J'ai déjà utilisé une de ces classes. Continuons à en utiliser pour poursuivre mon exercice en supprimant 2 <strong>asides</strong> pour les smartphones :
+
+<figure>
+<img src="maquette4.jpg" alt="Maquette">
+<figcaption>Affichage désiré sur smartphone</figcaption>
+</figure>
+
+Il suffit de changer une ligne :
+
+Réf <a href="exercice1_bis_bis.html" target="_blank">Exercice 1 : bis bis</a>
+
+<h3>2.) Exercice 2</h3>
+
+Maintenant, je vais obtenir le résultat visible à la figure suivante :
+
+<figure>
+<img src="maquette5.jpg" alt="Maquette 5">
+<figcaption>Résultat à obtenir</figcaption>
+</figure>
+
+Donc une entête qui prend toute la largeur de l'écran, une navigation à gauche, deux sections accolées et un pied de page, le tout pour grand écran. Voici
+une solution: 
+
+Réf <a href="exercice2.html" target="_blank">Exercice 2</a>
+
+Et pour faire en sorte que les deux section restent accolées sur les écrans moyens :
+
+Réf <a href="exercice2_a.html" target="_blank">Exercice 2_a</a>
+
+Pour finir: je me dis que mon application irait bien aussi sur tablette, l'empilement des éléments me convient, mais j'aimerais avoir une en-tête différente. 
+Après une nouvelle réflexion, j'en veux aussi une différente sur smartphone. Avec les classes "responsive" vues précédemment, c'est facile à réaliser: 
+
+Réf <a href="exercice2_b.html" target="_blank">Exercice 2_b</a>
+
+Remarque : Il y a deux façons d'écrire le header dans ce cas de figure, soit juste avec la classe <strong>col-lg-12</strong> pour chacun des div contenant le 
+texte de l'entête et des classes <strong>visible-*-block</strong> qui changent. Soit, en plus des classes <strong>visible-*-block</strong>, avec des classes 
+<strong>col-*-12</strong> pour chacune des dimensions à la place de la classe <strong>col-lg-12</strong> (dans les 3 div sur 4), mais alors il faudra 
+ajouter à la suite de la balise <strong>header</strong> un div ayant la classe <strong>clearfix</strong> pour que l'entête soit affiché correctement sur tous
+les supports.
+
+<h2>En résumé</h2>
+
+Il est possible avec la grille de régler très finement le rendu des pages selon les supports de visualisation.
+La plupart des éléments typographiques du HTML trouvent automatiquement une mise en forme esthétique avec Bootstrap.
+On a vu sur des exemples pratiques qu'il est facile de faire des mises en page même complexes sans trop d'effort
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Javascript de Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="../my_bootstrap.js" type="text/javascript"></script>
+</body>
+</html>

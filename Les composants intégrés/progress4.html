@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <title>Progress 4</title>
+  </head>
+  <body>
+  	<div class="container">
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
+  	  <div class="progress">
+  	    <div class="progress-bar progress-bar-info"></div>
+  	  </div>
+  	  <div class="progress">
+  	    <div class="progress-bar progress-bar-success"></div>
+  	  </div>
+  	  <div class="progress">
+  	    <div class="progress-bar progress-bar-warning"></div>
+  	  </div>
+  	  <div class="progress">
+  	    <div class="progress-bar progress-bar-danger"></div>
+  	  </div>
+  	  <div class="progress progress-striped">
+  	    <div class="progress-bar progress-bar-info"></div>
+  	  </div>
+  	  <div class="progress progress-striped">
+  	    <div class="progress-bar progress-bar-success"></div>
+  	  </div>
+  	  <div class="progress progress-striped">
+  	    <div class="progress-bar progress-bar-warning"></div>
+  	  </div>
+  	  <div class="progress progress-striped">
+  	    <div class="progress-bar progress-bar-danger"></div>
+  	  </div>
+  	  <input type="button" class="btn btn-primary" id="animer" value="Animer">
+  	  <input type="button" class="btn btn-warning" id="reset" value="Reset">
+  	</div>
+
+  	<script src="bootstrap/js/jquery.js"></script>
+  	<script>
+  		$(function() {
+  			$('#animer').click(function() {
+  				$('.progress-bar').each(function() {
+  						$(this).animate({ width: Math.ceil(Math.random() * 100) + '%'}, Math.ceil(Math.random() * 4500 + 500), 'linear');
+  				});
+  			});
+
+  			$('#reset').click(function() {
+  				$('.progress-bar').stop(true).width(0);
+  			})
+  		});
+  	</script>  		
+  </body>
+</html>

@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<title>Les plugins jQuery</title>
+</head>
+<body>
+																			<h1>Les plugins jQuery</h1>
+
+Je traiterai ici les plugins les plus importants en délaissant Affix qui est à la fois simple d'utilisation et d'un usage limité. Une page d'exemple servira à la 
+fois de collecteur de cas pratiques et de fil conducteur.
+
+<h2>I./ Généralités</h2>
+
+Bref.
+
+<h3>Placer jQuery</h3>
+
+Si je ne pas par un CDN, je le placerai dans le dossier <strong>js</strong> de mon dossier bootstrap.
+
+<h3>1.) Les librairies JavaScript de Bootstrap</h3>
+<h4>a./ Référencement</h4>
+
+Bootstrap propose un certain nombre de plugins pour améliorer les pages Web, ils sont tous fondés sur jQuery (voir figure suivante). Il y a deux façons de faire 
+appel à ces plugins :
+
+	-	soit je référence juste ce qui m'est utile en prenant la librairie correspondante dans le pack de Bootstrap (que je récupère en cliquant sur "Download 
+			source" sur la page <a href="https://getbootstrap.com/docs/3.3/getting-started/">Getting Started</a> comme à la figure suivante) :
+
+			<figure>
+			  <img src="jquery_libs.jpg" alt="Librairies JavaScript">
+			  <figcaption>Les librairies JavaScript de Bootstrap</figcaption>
+			</figure>
+	-	soit je référence la bibliothèque complète (que je récupère en cliquand sur "Download Bootstrap" sur la même page)
+
+Dans la 1re hypothèse, il faut faire attention aux dépendances. Elles ne sont pas nombreuses mais il faut les connaître :
+
+	-	<strong>popover</strong> doit être utilisé avec <strong>tooltip</strong>
+	-	<strong>collapse</strong> doit être utilisé avec <strong>transition</strong>
+
+Pour référencer les plugins dans l'hypothèse de l'utilisation individuelle, par exemple pour <strong>tab</strong> :
+
+<strong>
+&lt;script src="js/jquery.js">&lt;/script>
+&lt;script src="js/tab.js">&lt;/script>
+</strong>
+
+On déclare d'abord jQuery, puis ensuite le plugin. Dans l'hypothèse de la librairie globale :
+
+<strong>
+&lt;script src="js/jquery.js">&lt;/script>
+&lt;script src="js/bootstrap.min.js">&lt;/script> <!-- ou bootstrap.js -->
+</strong>
+
+<h3>2.) Mise en oeuvre</h3>
+
+Il y a 2 façons d'utiliser un plugin de Bootstrap :
+
+	-	à partir des attributs <strong>data</strong>
+	-	à partir d'objets jQuery
+
+Prenons un exemple avec l'effet accordéon que je verrai en détail ultérieurement :
+
+<strong>
+&lt;a href="#item" data-toggle="collapse">Changer&lt;/a>
+&lt;div id="item" class="collapse">Contenu&lt;/div>
+
+&lt;script src="bootstrap/js/jquery.js">&lt;/script>
+&lt;script src="bootstrap/js/boostrap.min.js">&lt;/script>
+</strong>
+
+Le plegin est déclenché par l'attribut <strong>data-toggle="collapse"</strong>. Dans cette hypothèse d'utilisation, je n'ai pas à manipuler de JavaScript.
+
+On peut obtenir exactement le même résultat en utilisant jQuery :
+
+<strong>
+&lt;a>Changer&lt;/a>
+&lt;div id="item" class="collapse">Contenu&lt;/div>
+
+&lt;script src="js/jquery.js">&lt;/script>
+&lt;script src="js/bootstrap.min.js">&lt;/script>
+&lt;script>
+	$(function() {
+		$('a').click(function() {
+			$('#item').collapse('toggle');
+		});
+	});
+&lt;/script>
+</strong>
+
+Je verrai plusieurs cas d'utilisation  de cette façon de procéder qui est plus laborieuse que la précédente, mais qui s'avère incontournable selon les actions que
+je veux effectuer.
+
+<h3>3.) Les événements</h3>
+
+La plupart des plugins exposent des événements. En poursuivant l'exemple précédent, on peut faire apparaître un message lorsque le contenu est visible :
+
+Réf <a href="collapse.html" target="_blank">Collapse</a>
+
+Je verrai aussi plusieurs exemples d'événements dans les plugins de Bootstrap.
+
+<h3>4.) La page d'exemple</h3>
+
+Pour éviter de surcharger de code les chapitres sur les plugins, voici la page d'exemple complétée avec des cas d'utilisation des plugins concernés :
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple</a>
+
+Les plugins utilisés dans cette page sont détaillés au cours de ce cours.
+
+<h2>II./ Menu déroulant</h2>
+<h3>1.) Menu déroulant dans la barre de navigation</h3>
+
+Le plugin jQuery Dropdown permet de faire de jolis menus déroulants. Il suffit de modifier une barre de navigation pour ajouter un menu déroulant :
+
+<a href="dropdown.html" target="_blank">Dropdown</a>
+
+Il a fallu ajouter quelques classes mais le résultat est très réussi !
+
+Voyons ça de plus près : pour ajouter la fonctionnalité de dropdown, il faut utiliser la classe <strong>dropdown</strong> et ajouter 
+<strong>data-toggle="dropdown"</strong> dans la balise concernée pour que le menu fonctionne. Ici, je l'ai fait pour la balise <strong>&lt;a></strong> qui
+contient le libellé du lien du menu. Il faut aussi utiliser la classe <strong>dropdown-menu</strong> dans la balise <strong>&lt;ul></strong> qui doit englober le
+menu déroulant.
+
+C'est ce qui a été réalisé dans la <a href="page_exemple.html" target="_blank">page d'exemple</a>
+
+<h3>2.) Menu déroulant dans un bouton</h3>
+<h4>a./ La base</h4>
+
+On peut créer un menu déroulant activé par un bouton. Voici un code de base :
+
+<a href="dropdown2.html" target="_blank">Dropdown 2</a>
+
+Il faut noter la classe <strong>btn-group</strong> nécessaire au fonctionnement du plugin, ainsi que la classe <strong>dropdown-toggle</strong>. 
+
+J'ai même ajouté la classe <strong>caret</strong> pour le bouton afin que l'on puisse mieux voir que celui-ci est un bouton spécial faisant dérouler un menu.
+
+Et pour que le menu s'affiche vers le haut, on ajoute la classe <strong>dropup</strong> à la balise div englobante possédant la classe <strong>btn-group</strong> :
+
+Réf <a href="dropdown2.html" target="_blank">Dropdown 2</a>
+
+<h4>b./ Des boutons colorés et des icônes</h4>
+
+On peut aussi ajouter des icônes et avoir de la couleur, comme pour tout bouton :
+
+Réf <a href="dropdown3.html" target="_blank">Dropdown 3</a>
+
+<h4>c./ Séparer les fonctions</h4>
+
+On peut faire en sorte que le bouton ait 2 usages : en tant que bouton pour une action et en tant que déclencheur de menu déroulant. Il est alors séparé en 2
+parties : à gauche  pour l'action, à droite pour le menu. Pour réaliser cela, on crée un groupe de 2 boutons, un avec le texte, l'autre avec le signe, comme à la 
+figure suivante :
+
+Réf <a href="dropdown4.html" target="_blank">Dropdown 4</a>
+
+<h4>d./ En-têtes</h4>
+
+Pour ajouter des en-têtes pour subdiviser le menu, il faut utiliser la classe <strong>dropdown-header</strong> :
+
+Réf <a href="dropdown5.html" target="_blank">Dropdown 5</a>
+
+<h4>e./ Alignement à droite</h4>
+
+Par défaut, le menu est aligné sur le côté gauche du bouton. On peut utiliser la classe <strong>dropdown-menu-right</strong> pour l'aligner sur le côté droit :
+
+Réf <a href="dropdown6.html" target="_blank">Dropdown 6</a>
+
+<h4>f./ Désactiver une option</h4>
+
+Pour rendre une option du menu inactive, du moins en apparence, il faut utiliser la classe <strong>disabled</strong> :
+
+Réf <a href="dropdown6.html" target="_blank">Dropdown 6</a>
+
+<h4>g./ Des sous-menus</h4>
+
+La version 3 de Bootstrap, principalement orientée vers l'informatique nomade, n'a pas reconduit la possibilité de créer des sous-menus. Il est toutefois possible
+avec quelques styles de rétablir cette possibilité (astuce trouvée sur le site <a href="http://bootply.com/">bootply</a>). Il me faut donc prévoir ces styles pour
+ma page :
+
+<strong>
+.dropdown-submenu{position:relative;}
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;
+-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;
+border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;
+-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+</strong>
+
+Voici un exemple de mise en oeuvre :
+
+Réf <a href="dropdown7.html" target="_blank">Dropdown 7</a>
+
+<h3>3.) Activation par JavaScript</h3>
+<h4>a./ Déclenchement du menu</h4>
+
+Tant qu'on veut une mise en oeuvre du menu déroulant avec un clic, la propriété <strong>data-toggle</strong> est suffisante. Mais il peut se présenter des
+cas de figure particuliers. Par exemple, si je veux déclencher le menu déroulant no pas par un clic, mais par le passage du curseur de la souris au-dessus
+d'un élément particulier. Dans ce cas, je dois utiliser jQuery pour faire fonctionner mon menu.
+
+Réf <a href="dropdown8.html" target="_blank">Dropdown 8</a>
+
+Il a fallu ajouter un peu de JavaScript pour gérer l'événement correspondant et utiliser l'unique méthode <strong>dropdown()</strong> du plugin. 
+
+Attention : ce plugin a tout de même besoin de l'attribut <strong>data-toggle="dropdown"</strong> pour fonctionner correctement.
+
+<h4>b./ Les événements</h4>
+
+Je dispose également de 4 événements pour ce composant : 
+
+<strong>
+	-	show.bs.dropdown : se déclenche dès l'appel à la méthode show()
+	-	shown.bs.dropdown : se déclenche lorsque le menu devient visible
+	-	hide.bs.dropdown : se déclenche dès l'appel à la méthode hide()
+	-	hidden.bs.dropdown : se déclenche lorsque le menu est masqué
+</strong>
+
+L'utilité de ces événements ne saute pas spontanément aux yeux. Voici la syntaxe :
+
+<strong>
+$('#mon_dropdown').on('shown.bs.dropdown', function() {
+	// Du code
+});
+</strong>
+
+<h2>III./ Fenêtre modale</h2>
+<h3>1.) Un premier exemple simple</h3>
+
+La mise en place d'une fenêtre modale nécessite l'utilisation de quelques classes. Voici un premier exemple :
+
+Réf <a href="modal.html" target="_blank">Modal</a>
+
+Le principe est simple : on crée un <strong>&lt; div></strong> englobant avec la classe <strong>modal</strong>, qui se charge de configurer et positionner la
+fenêtre. On crée un second <strong>&lt; div></strong> englobant avec la classe <strong>modal-dialog</strong>. On peut ensuite organiser la fenêtre avec une 
+classe englobante <strong>modal-content</strong>, un en-tête grâce à la classe <strong>modal-header</strong> et un corps avec <strong>modal-body</strong>. On
+prévoit également une action pour fermer la fenêtre avec un bouton classé <strong>close</strong>, et la propriété <strong>data-dismiss="modal"</strong>. Il ne
+reste plus qu'à créer un bouton  pour ouvrir la fenêtre en faisant correspondre bouton et fenêtre avec un identifiant, et en utilisant <strong>data-toggle="modal"
+</strong> pour que le plugin fonctionne. 
+
+<p class="warning">Attention : un clic en dehors de la fenêtre modale entraîne la fermeture de celle-ci, ce qui est le comportement normal. Si on veut le 
+comportement inverse il faut ajouter l'option <strong>data-backdrop="static"</strong> dans le bouton de commande.</p>
+
+<h3>2.) Un pied de page</h3>
+
+On peut améliorer un peu l'esthétique en créant un pied de page avec la classe <strong>modal-footer</strong> et un bouton pour sortir :
+
+Réf <a href="modal_footer.html" target="_blank">Modal footer</a>
+
+<h3>3.) Une transition</h3>
+
+Il est possible également d'obtenir un effet de transition en ajoutant la classe <strong>fade</strong> :
+
+Réf <a href="modal_fade.html" target="_blank">Modal fade</a>
+
+<h3>4.) Garder le fond de l'écran</h3>
+
+Si je désire conserver l'aspect normal de la fenêtre de fond, il faut renseigner l'option <strong>backdrop</strong> qui est vraie par défaut de cette
+manière :
+
+Réf <a href="modal_fade_backdrop.html" target="_blank">Modal data-backdrop</a>.
+
+Note : dans ce cas, on a le même comportement qu'avec <strong>"static"</strong> et la fenêtre ne se ferme pas lors d'un clic en dehors d'elle.
+
+<h3>5.) Injecter une page HTML</h3>
+
+Il est possible d'injecter une page HTML dans le corps de la fenêtre modale, mais il faut que cette page ait été pensée pour cela. Exemple :
+
+Réf <a href="modal_injecter.html" target="_blank">Modal : injecter HTML</a>
+
+Le bouton comporte l'adresse de la page à charger avec l'attribut <strong>href</strong>. On se contente de prévoir le contenant avec la classe 
+<strong>modal-content</strong>. Quand on clique sur le bouton, jQuery charge la page ciblée et l'injecte dans la <strong>&lt; div></strong>qui comporte la classe
+<strong>modal-content</strong>.
+
+<p class="warning">Attention : cette mise en oeuvre a changé avec la version 3.1 de Bootstrap. Auparavant, on se contentait d'une <strong>&lt; div></strong> avec
+la classe <strong>modal</strong>.
+
+Voici le code de la page à charger :
+
+Réf <a href="remote.html" target="_blank">Remote.html</a>
+
+Mon exemple tel qu'il est traité ne présente pas un grand intérêt, autant prévoir le code directement dans la page de base. En revanche, cela peut devenir
+intéressant dans le cas où plusieurs contenus sont disponibles. Exemple :
+
+Réf <a href="modal_injecter_2.html" target="_blank">Modal : plusieurs pages</a>
+
+Note : il faut utiliser le gestionnaire de l'événement <strong>hidden.bs.modal</strong> qui survient à la fermeture de la fenêtre modale. Il est nécessaire de
+réinitialiser la fenêtre sinon on ouvre toujours la même...
+
+Remarque : lorsque ce plugin injecte ainsi des pages HTML, il utilise en fait l'objet XMLHttpRequest.
+
+<h3>6.) Largeur de la fenêtre modale</h3>
+
+La version 3.1 de Bootstrap a ajouté la possibilité de choisir la dimension d'une fenêtre modale avec 2 classes : <strong>modal-lg</strong> et <strong>modal-sm
+</strong>. La première permet d'obtenir une fenêtre large, alors que la seconde fait l'inverse en créant une fenêtre étroite. Ces classes doivent aller avec
+la classe <strong>modal-dialog</strong>. Exemple :
+
+Réf <a href="modal_lg_sm.html" target="_blank">Modal : small and large</a>
+
+<h3>7.) La page d'exemple et l'accessibilité</h3>
+
+Une fenêtre modale a été ajoutée à la page d'exemple. Pour ne pas trop alourdir cette page, j'ai juste prévu une fenêtre qui s'ouvre lorsqu'on clique  sur le 
+lien "Tigre de Sibérie". 
+
+Réf <a href="list_group_modal.html" target="_blank">List-group : modal</a>
+
+J'ai intégré le code ARIA pour l'accessibilité. Le rôle a été défini comme <strong>dialog</strong> (
+<a href="https://www.w3.org/TR/wai-aria/roles#dialog" target="_blank">définition du W3C</a>), c'est ce qui est préconisé par les auteurs de Bootstrap. Si on lit
+la définition, on parle de fenêtre qui interrompt le flux normal et qui requiert une entrée de l'utilisateur (ce qui n'est pas le cas ici). Cela permet en fait 
+de prendre en compte les besoins des personnes présentant un déficit sensoriel. En parcourant les rôles, l'auteur de ce cours aurait plutôt eu tendance à 
+utiliser <a href="https://www.w3.org/TR/wai-aria/roles#complementary" target="_blank">complementary</a> dans le cas présent.
+
+La propriété <a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-labelledby" target="_blank">aria-labelledby</a> fait référence au titre de la fenêtre modale. Par
+exemple, un lecteur d'écran va lire le texte correspondant pour renseigner l'utilisateur sur le contenu de la fenêtre modale. Enfin, la propriété 
+<a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-hidden" target="_blank">aria-hidden</a> définie à <strong>true</strong> indique de ne pas
+tenir compte de l'élément. Evidemmmet, ces ajouts d'accessibilité n'ont pas vraiment de sens que si toute la page est traitée de cette façon...
+
+<h3>8.) Un formulaire dans la fenêtre</h3>
+
+Il est tout à fait possible d'avoir des éléments interactifs au niveau de la fenêtre modale comme par exemple un formulaire. Voici un exemple :
+
+Réf <a href="modal_form.html" target="_blank">Modal : formulaire</a>
+
+Le traitement du formulaire va se faire en Ajax, de cette façon il est facile de gérer la validation (ce que je ne fais pas dans cet exemple pour ne pas
+alourdir le code).
+
+Je me contente de mettre en forme les informations transmises par la page "test.php" et de renvoyer le tout dans la balise comportant l'id "html". 
+<h3>9.) Activation avec JavaSrcript</h3>
+<h4>a./ Déclenchement de la fenêtre modale</h4>
+
+On a vu que l'on peut pratiquement tout faire avec les propriétés, mais j'ai la possibilité d'utiliser JavaScript pour utiliser ce plugin. La propriété 
+<strong>data-toggle="modal"</strong> placée dans l'élément déclencheur active automatiquement le plugin. Reprenons l'exemple vu ci-dessus n'utilisant plus
+cette propriété : 
+
+Réf <a href="modal2.html" target="_blank">Modal 2</a>
+
+Dans cet exemple, pour activer le plugin, j'utilise du JavaScript : 
+
+<strong>
+$('#activer').click(function() {
+	$('.modal').modal('show');
+});
+</strong>
+
+On peut aussi modifier le comportement de la fenêtre avec des propriétés. Par exemple, la propriété booléenne <strong>keyboard</strong>, qui est normalement
+vraie, permet de fermer la fenêtre par action sur la touche d'échappement. On peut la renseigner en complétant mon exemple. Mais il faut aussi renseigner 
+la propriété <strong>show</strong> qui est vraie par défaut, et ouvre la fenêtre dès le chargement de la page, ce que l'on ne désire évidemment pas. Voici le
+code correspondant (cachant la fenêtre) :
+
+<strong>
+$('.modal').modal({
+	keyboard: false,
+	show: false
+});
+</strong>
+
+<h4>b./ Les événements</h4>
+
+Je dispose également de 5 événements pour ce composant : 
+
+<figure>
+<img src="events_modal.jpg" alt="Evénements du plugin modal">
+<figcaption>Les événements du composant modal</figcaption>
+</figure>
+
+J'ai par exemple un formulaire sur la page modale comme on l'a vu ci-dessus et je désire que le premier contrôle soit actif à l'affichage de la page, je peux le
+réaliser facilement ainsi : 
+
+<strong>
+$('.modal').on('shown.bs.modal', function() {
+	$('input:first').focus();
+});
+</strong>
+
+<h2>IV./ Onglets</h2>
+<h3>1.) Un premier exemple simple</h3>
+
+Le plugin <strong>Tab</strong> permet de créer facilement des onglets. Exemple :
+
+Réf <a href="onglets.html" target="_blank">Onglets</a>
+
+On utilise une liste et quelques classes, rien de bien compliqué. Les classes <strong>nav</strong> et <strong>nav-tab</strong> s'occupent de la mise en forme. Le
+plugin est activé par <strong>data-toggle="tab"</strong>. On pointe le bon contenu avec <strong>href</strong>.
+
+<h3>2.) Un autre aspect</h3>
+
+Si cette apparence tabulaire ne me convient pas, je peux changer pour un autre aspect avec une modification minime. Voir l'illustration en cliquant ici :
+
+Réf <a href="onglets2.html" target="_blank">Onglets 2</a>
+
+<h3>3.) Transition progressive</h3>
+
+Pour obtenir un effet progressif, il suffit d'ajouter la classe <strong>fade</strong> pour chacun des <strong>tab-pane</strong> :
+
+Réf <a href="onglets3.html" target="_blank">Onglets 3</a>
+
+Il faut ajouter aussi la classe <strong>in</strong> pour le <strong>tab-pane</strong> actif pour faire apparaître le texte (opacity à 1) au chargement de la 
+page.
+
+<h3>4.) Empilage</h3>
+
+Si tout cela ne me convient pas, je peux également empiler les liens, comme ceci :
+
+Réf <a href="onglets4.html" target="_blank">Onglets 4</a>
+
+<h3>5.) Justification</h3>
+
+Il est aussi possible de faire en sorte que les onglets occupent tout l'espace disponible en se répartissant de façon homogène :
+
+Réf <a href="onglets5.html" target="_blank">Onglets 5</a>
+
+<h3>6.) Désactiver un lien</h3>
+
+Je peux marquer un lien comme inactif avec la classe <strong>disabled</strong> :
+
+Réf <a href="onglets6.html">Onglets 6</a>
+
+Mais ce n'est pas parce qu'il apparaît comme inactif qu'il l'est vraiment ! Pour le rendre réellemnt inactif, il faut enlever la propriété <strong>data-toggle
+</strong> : 
+
+<strong>
+&lt;li class="disabled">&lt;a href="#livres">Livres&lt;/a>&lt;/li>
+</strong>
+
+<h3>7.) Un menu déroulant dans un onglet</h3>
+
+Pour avoir un menu déroulant sur un onglet, il faut utiliser le plugin <strong>dropdown</strong> que j'ai déjà vu :
+
+Réf <a href="onglets_dropdown.html" target="_blank">Onglets : dropdown</a>
+
+<h3>8.) Onglets latéraux</h3>
+
+Je peux adapter la disposition et mettre par exemple les onglets empilés à gauche :
+
+Réf <a href="onglets_lateraux.html" target="_blank">Onglets latéraux</a>
+
+Ou à droite (en remplaçant <strong>pull-left</strong> par <strong>pull-right</strong>) :
+
+<strong>
+&lt;ul class="nav nav-pills nav-stacked pull-right">
+</strong>
+
+<h3>9.) La page d'exemple</h3>
+
+Ma page d'exemple est maintenant enrichie d'onglets dans la partie inférieure :
+
+Réf <a href="page_exemple.html#contact" target="_blank">Page d'exemple : nav nav-pills</a>
+
+<h3>10.) Utilisation de JavaScript</h3>
+<h4>a./ Activation des onglets</h4>
+
+J'ai ci-dessus activé le plugin avec la propriété <strong>data-toggle="tab"</strong>. Il est aussi possible d'utiliser le plugin directement avec du JavaScript.
+Voici un des exemples sans la propriété renseignée et avec du jQuery : 
+
+Réf <a href="onglets_js.html" target="_blank">Onglets : js</a>
+
+J'applique la méthode <strong>tab('show')</strong> à l'objet jQuery associé à chacun des liens lorsque ceux-ci sont cliqués :
+
+<strong>
+$('a').click(function(e) {
+	e.preventDefault();
+	$(this).tab('show');
+});
+</strong>
+
+<h4>b./ Les événements</h4>
+
+Je dispose également de 4 événements pour ce composant :
+
+<figure>
+<img src="events_tab.jpg" alt="Evénements du composant tab">
+<figcaption>Evénements du plugin <strong>Tab</strong></figcaption>
+</figure>
+
+D'autre part, il est possible de connaître l'onglet actif avec <strong>event.target</strong> et l'onglet précédemment sélectionné avec 
+<strong>event.relatedTarget</strong>. On va utiliser tout cela pour afficher le nom de l'onglet actuel et du précédent à chaque changement. On va donc ajouter
+le code HTML pour accueillir l'information :
+
+Réf <a href="onglets_final.html" target="_blank">Onglet final</a>
+
+<h2>V./ Boutons</h2>
+<h3>1.) Bouton bascule</h3>
+
+On a parfois besoin de boutons à 2 états stabilisés : repos et appuyé. Le plugin permet de réaliser cela facilement. Il suffit de créer le bouton en prévoyant
+<strong>data-toggle="button"</strong> :
+
+Réf <a href="bouton.html" target="_blank">Bouton</a>
+
+L'effet produit est le suivant : lorsqu'on clique sur le bouton, il apparaît comme s'il est resté appuyé, jusqu'à ce qu'on clique de nouveau sur ce bouton.
+
+<h3>2.) Boutons effet "checkbox"</h3>
+
+On peut grouper des boutons avec la classe <strong>btn-group</strong> et les faire fonctionner comme des <strong>checkbox</strong> avec <strong>
+data-toggle="buttons"</strong>. Les boutons restent indépendants dans leur fonctionnement mais ont l'avantage d'être groupés. Pour réaliser cela, il faut 
+utiliser des balises <strong>&lt; label></strong> classés <strong>btn btn-*</strong> dans lesquelles je place des contrôles <strong>input</strong> de type 
+<strong>checkbox</strong> :
+
+Réf <a href="bouton2.html" target="_blank">Bouton 2</a>
+
+<h3>3.) Boutons effet "radio"</h3>
+
+On peut grouper des boutons avec la classe <strong>btn-group</strong> et les faire fonctionner comme des <strong>boutons radio</strong> avec 
+<strong>data-toggle="buttons"</strong>. Les boutons sont maintenant liés dans leur fonctionnement, un seul peut être enfoncé. Pour réaliser cela, il faut 
+utiliser des contrôles <strong>input</strong> de type <strong>radio</strong> :
+
+Réf <a href="bouton3.html" target="_blank">Bouton 3</a>
+
+<h3>4.) Boutons pour attente de processus</h3>
+
+Parfois on clique sur un bouton pour réaliser un processus qui demande un certain temps, comme par exemple un envoi de fichier. Le plugin prévoit cette 
+possibilité. Voici un premier exemple avec une temporisation artificielle juste pour marquer l'effet :
+
+Réf <a href="bouton4.html" target="_blank">Bouton 4</a>
+
+Maintenant, voyons un cas d'utilisation un peu plus réaliste que cette minuterie. J'ai une image lourde à charger, et je veux que le bouton change d'état 
+le temps de chargement de l'image :
+
+Réf <a href="bouton5.html" target="_blank">Bouton 5</a>
+
+Sans le setTimout, je ne verrai certainement l'effet qu'une fois sur mon navigateur, étant donné qu'ensuite l'image sera en cache.
+
+<h3>5.) La page d'exemple</h3>
+
+La page d'exemple a été agrémentée de boutons groupés de type "radio" pour choisir une vidéo :
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple</a>
+
+<h2>VI./ Carrousel</h2>
+<h3>La page d'exemple</h3>
+
+La page d'exemple comporte un carrousel. Pour info, ce terme prend un <em>R</em> en anglais et deux en français.
+
+<h3>1.) Un premier exemple simple</h3>
+
+Ce plugin permet de créer facilement un carrousel. La mise en place nécessite l'utilisation de quelques classes. Voici la structure de base HTML :
+
+<strong>
+&lt;div class="carousel slide" data-ride="carousel">
+	&lt;div class="carousel-inner">
+		&lt;div class="item active"> ... &lt;/div>
+		&lt;div class="item"> ... &lt;/div>
+		&lt;div class="item"> ... &lt;/div>
+	&lt;/div>
+&lt;/div>
+</strong>
+
+Voici un 1er exemple simple :
+
+Réf <a href="carrousel.html" target="_blank">Carrousel</a>
+
+Pour chaque item on place une balise &lt; img> pour référencer une image. On utilise la classe <strong>active</strong> pour désigner l'image qui doit apparaître
+en premier. J'ai utilisé une classe <strong>col-lg-8</strong> pour calibrer le carrousel et une classe <strong>col-lg-offset-2</strong> pour le centrer. Les
+3 images sont aux mêmes dimensions. Il me faut aussi initialiser le carrousel avec <strong>data-ride="carousel"</strong>. Par défaut, les images défilent au
+rythme de 5s.
+
+<h3>2.) Des titres pour les images</h3>
+
+Il est possible de faire apparaître un titre pour chaque image dans la partie inférieure avec la classe <strong>carousel-caption</strong> :
+
+Réf <a href="carrousel2.html" target="_blank">Carrousel 2</a>
+
+<p class="warning">Attention : le titre se superpose sur l'image, il faut donc adapter le style aux couleurs présentes sur l'image pour que le titre soit
+lisible.</p>
+
+<h3>3.) Un indicateur de l'image affichée</h3>
+
+Il est possible de faire apparaître un indicateur pour savoir quelle image est affichée et aussi pour accéder directement à une image particulière. Il faut 
+identifier le carrousel et le pointer avec l'attribut <strong>data-target</strong>. L'attribut <strong>data-slide-to</strong> permet d'identifier la diapositive
+concernée. On peut aussi sélectionner la diapositive à afficher en cliquant sur l'indicateur :
+
+Réf <a href="carrousel3.html" target="_blank">Carrousel 3</a>
+
+<p class="warning">Attention: l'indicateur vient aussi au-dessus de l'image,  il faut donc adapter également le style aux couleurs présentes sur l'image pour
+qu'il soit lisible.</p>
+
+<h3>4.) Des boutons de défilement</h3>
+
+On peut aussi afficher des boutons à droite et à gauche pour permettre un défilemnet manuel des images. Il faut identifier le carrousel pour le référencer dans
+les liens avec <strong>href</strong> :
+
+Réf <a href="carrousel4.html" target="_blank">Carrousel 4</a>
+
+<p class="warning">Attention: les chevrons viennent au-dessus de l'image, besoin peut-être d'adapter leur couleur.</p>
+
+<h3>5.) Améliorer la présentation</h3>
+
+On peut améliorer la présentation du diaporama avec du style, comme ceci :
+
+<strong>
+.carousel-inner {
+	border: 5px solid white;
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+</strong>
+
+Mais on peut aussi utiliser une classe de Bootstrap pour obtenir un effet sympathique sans ajouter de style :
+
+<strong>
+&lt;div class="carousel-inner thumbnail">
+</strong>
+
+<h3>6.) Les options du carrousel</h3>
+<h4>a./ Délai de défilement</h4>
+
+Dans les exemples précédents on a lancé le carrousel avec <strong>data-ride="carousel"</strong>. Si on veut changer un peu le fonctionnement de base il faut
+le lancer de façon explicite à partir du JavaScript. Par exemple ici pour changer la vitesse de défilement :
+
+<strong>
+$(function() {
+	$('.carousel').carousel({ interval: 2000 });
+});
+</strong>
+
+<p class="warning">Attention : si je lance le carrousel de façon explicite avec JavaScript, il ne faut évidemment pas prévoir <strong>data-ride="carousel"</strong>
+qui ferait alors double usage.</p>
+
+<h4>b./ Cycle et pause</h4>
+
+On peut avec jQuery commander le démarrage du cycle ou la pause comme ceci :
+
+Réf <a href="carrousel5.html" target="_blank">Carrousel 5</a>
+
+Les deux boutons commandent le diaporama. C'est une bonne occasion pour revoir comment configurer des boutons de type "radio" avec Bootstrap.
+
+<h4>c./ Autres commandes</h4>
+
+Voici maitenant un exemple plus complet avec une palette de boutons de commande :
+
+Réf <a href="carrousel6.html" target="_blank">Carrousel 6</a>
+
+<h3>7.) Les événements</h3>
+
+Je dispose de 2 événements pour ce composant :
+
+<strong>
+	-	slide.bs.carousel : se déclenche dès l'appel à la méthode <em>slide</em>
+	-	slid.bs.carousel : se déclenche lorsque la transition est terminée
+</strong>
+
+Complétons l'exemple précédent en prévoyant l'affichage de l'index de la diapositive en cours ainsi que le nombre total des diapositives. Voici le
+code :
+
+Réf <a href="carrousel7.html" target="_blank">Carrousel 7</a>
+
+<h2>VII./ Info-bulles et Popover</h2>
+<h3>1.) La page d'exemple</h3>
+
+La page d'exemple est agrémentée d'infos-bulles :
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple</a>
+
+Ces deux plugins (Info-bulles et Popover) partagent une bibliothèque et ont un fonctionnement analogue, je vais donc les traiter ensemble.
+
+<h3>2.) Info-bulle</h3>
+<h4>a./ Un exemple simple</h4>
+
+Le but est d'obtenir de jolies info-bulles, comme à la figure suivante :
+
+<figure>
+<img src="info-bulle.png" alt="Info-bulle">
+<figcaption>Apparence d'une info-bulle</figcaption>
+</figure>
+
+Voici le code correspondant à ce premier exemple :
+
+Réf <a href="tooltip.html" target="_blank">Tooltip</a>
+
+On utilise des balies <strong>&lt; a></strong> avec l'attribut <strong>data-toggle</strong> égal à <strong>tooltip</strong>. Le contenu de l'info-bulle se place
+dans l'attribut <strong>title</strong>. Si je teste ce code il ne se passera rien parce qu'il faut initiaser le plugin avec jQuery :
+
+<strong>
+$(function() {
+	$('a').tooltip();
+});
+</strong>
+
+Il suffit d'utiliser la méthode <strong>tooltip()</strong> avec le bon sélecteur, ici on a choisi la balise <strong>&lt; a></strong> parce qu'on veut une info-bulle
+sur tous les liens de la page. Il faut affiner la sélection en fonction du contexte.
+
+<h4>b./ Positionnement de l'info-bulle</h4>
+
+On peut changer le positionnement de l'info-bulle qui par défaut se situe juste au-dessus avec l'option <strong>placement</strong>. Les possibilités sont
+<strong>top</strong> (l'option par défaut), <strong>bottom, left</strong> et <strong>right</strong>. Voici un exemple d'utilisation avec le même code HTML :
+
+<strong>
+$(function() {
+	$('a:first-child').tooltip({ placement: 'left' });
+	$('a:last-child').tooltip({ placement: 'bottom' });
+});
+</strong>
+
+Note : On peut aussi fixer la position avec l'attribut data-placement :
+
+<strong>
+&lt;a href="#" data-toggle="tooltip" data-placement="bottom" title="Synonyme de carnassier">
+</strong>
+
+<h4>c./ Déclenchement de l'info-bulle</h4>
+
+Par défaut l'info-bulle est déclenchée lorsque le curseur de la souris se déplace sur l'élément concerné ou si celui-ci a le focus. On peut modifier ce
+comportement avec l'option <strong>trigger</strong>. Les possibilités sont <strong>click, hover, focus</strong> et <strong>manual</strong>. Voici un exemple
+d'utilisation avec le même code HTML :
+
+<strong>
+$(function() {
+	$('a:first-child').tooltip({ trigger: 'click' });
+	$('a:last-child').tooltip({ placement: 'bottom', trigger: 'hover click' });
+});
+</strong>
+
+Ici on utilise l'option <strong>trigger</strong> en la définissant à <strong>click</strong> pour le premier et <strong>hover</strong> et <strong>click</strong> 
+pour le second.
+
+<h4>d./ Délai de déclenchement de l'info-bulle</h4>
+
+Par défaut l'info-bulle s'affiche immédiatement et disparaît avec la même célérité. On peut modifier ce comportement avec l'option <strong>delay</strong>. On
+peut soit définir un délai identique pour l'apparition et la disparition, soit différencier les deux. Voici un exemple d'utilisation avec le même code HTML :
+
+<strong>
+$(function() {
+	$('a:first-child').tooltip({ delay: 400 });
+	$('a:last-child').tooltip({ delay: { show: 400, hide: 200 } });
+});
+</strong>
+
+<h3>3.) Popover</h3>
+<h4>a./ Un exemple simple</h4>
+
+Un popover est une grosse info-bulle. Le fonctionnement est identique à ce que j'ai vu précédemment. Voici un premier exemple (juste le code HTML d'abord) :
+
+Réf <a href="popover.html" target="_blank">Popover</a>.
+
+On utilise des balises &lt; a> avec l'attribut <strong>data-toggle</strong> égal à <strong>popover</strong>. Le contenu se place dans l'attribut 
+<strong>data-content</strong> et le titre dans l'attribut <strong>title</strong>. Si je teste ce code, il ne se passera rien car il faut initialiser le plugin
+avec jQuery :
+
+<strong>
+$(function() {
+	$('#pop').popover();
+});
+</strong>
+
+Il suffit d'utiliser la méthode <strong>popover</strong>. Ici, on a choisi tout simplement un <strong>id</strong>.
+
+<h4>b./ Fermeture sur clic</h4>
+
+Par défaut pour fermer la fenêtre il faut cliquer à nouveau sur le déclencheur, ici le bouton. Si on veut une fermeture sur un clic ailleurs sur la page il faut
+ajouter le trigger focus :
+
+<a href="popover2.html" target="_blank">Popover 2</a>
+
+Ce qu'il est possible aussi de réaliser avec du JavaScript : 
+
+<strong>
+$('#pop').popover({ trigger: 'focus' });
+</strong>
+
+<h4>c./ Pisitionnement</h4>
+
+Comme pour l'info-bulle on peut modifier le positionnement avec l'option <strong>placement</strong> avec les mêmes possibilités.
+Exemple :
+
+<strong>
+$('#pop').popover({ placement: 'bottom' });
+</strong>
+
+<h4>d./ Délai</h4>
+
+On peut aussi définir un délai d'apparition et de disparion :
+
+<strong>
+$('#pop').popover({ delay: { show: 800, hide: 300 } });
+</strong>
+
+<h4>e./ Déclenchement</h4>
+
+Le comportement par défaut est un déclenchement au clic sur l'élément, mais on peut facilement changer ce comportement :
+
+<strong>
+$('#pop').popover({ placement: 'bottom', trigger: 'hover' });
+</strong>
+
+Ici on a utilisé l'option <strong>trigger</strong> pour avoir un déclenchement au passage (hover) sur l'élément. On montre aussi qu'on peut cumuler plusieurs
+options puisqu'on a aussi défini le positionnement en bas avec <strong>bottom</strong>. 
+
+Avec l'option <strong>manual</strong> on peut définir une action quelconque pour déclencher le popover que l'on veut :
+
+Réf <a href="popover3.html" target="_blank">Popover 3</a>
+
+Cette fois, on a défini le popover au niveau d'une image et on se propose de le déclencher à partir d'un bouton. Voici le code jQuery correspondant :
+
+<strong>
+$('#img').popover({ trigger: 'manual' });
+$('#pop').click(function() {
+	$('#img').popover('toggle');
+});
+</strong>
+
+<h4>f./ Du HTML dans le popover</h4>
+
+Par défaut, je ne peux mettre que du simple texte dans le popover. Toutefois, je peux mettre l'option <strong>html</strong> à <strong>true</strong> pour
+changer ce fonctionnement :
+
+Réf <a href="popover4.html" target="_blank">Popover 4</a>
+
+<h2>VIII./ Effet accordéon</h2>
+<h3>1.) Un exemple simple</h3>
+
+Le plugin accordéon (Collapse) est bien adapté au composant <strong>panel</strong>. Voici un premier exemple :
+
+Réf <a href="collapse_panel.html" target="_blank">Collapse &amp; Panel</a>
+
+Il faut distinguer deux éléments :
+
+	-	Le déclencheur sur lequel on clique : ici c'est un lien avec une balise &lt; a>. Il doit comporter la propriété <strong>data-toggle="collapse"</strong>
+			et évidemment la cible avec <strong>href</strong>.
+	-	La zone à masquer ou à démasquer : elle est englobée avec un &lt; div> équipé de la classe <strong>collapse</strong>
+
+Le lien entre le déclencheur et la zone se fait par l'identifiant de la zone. La classe <strong>in</strong> permet de déterminer si une zone est affichée ou
+pas. Dans mon exemple, j'ai mis cette classe pour la 1re zone, celle-ci s'affiche donc dès le chargement.
+
+<h3>2.) Des bordures pour bien délimiter les éléments</h3>
+
+Je vais voir maintenant une utilisation plus complète du composant <strong>panel</strong> :
+
+Réf <a href="collapse_panel2.html" target="_blank">Collapse &amp; Panel 2</a>
+
+Maintenant les blocs sont bien distincts...
+
+<h3>3.) Afficher une seule zone</h3>
+
+En général, lorsqu'on crée un effet accordéon, on veut que lorsqu'on affiche une zone, les autres s'effacent automatiquement. Voilà comment procéder :
+
+Réf <a href="collapse_panel3.html" target="_blank">Collapse &amp; Panel 3</a>
+
+Il a fallu ajouter un identifiant (#acrd) à la balise englobante et faire une référence dans les déclencheurs avec <strong>data-parent="#acrd"</strong>.
+
+<h3>4.) De jolies en-têtes</h3>
+
+Ca fonctionne bien mais c'est un peu triste sans couleur, comme on utilise le composant panel, c'est facile à arranger :
+
+Réf <a href="collapse_panel4.html" target="_blank">Collapse &amp; Panel 4</a>
+
+<h3>5.) Effet accordéon sur une liste groupée</h3>
+
+L'effet accordéon n'est pas limité au composant <strong>panel</strong>. On peut par exemple l'utiliser pour une liste groupée. Voici un exemple de mise
+en oeuvre :
+
+Réf <a href="collapse_panel_list.html" target="_blank">Collapse &amp; Panel &amp; List-group</a>
+
+<h3>6.) Commande en JavaScript</h3>
+
+On peut activer ce plugin avec JavaScript et lancer des commandes sur n'importe quel élément. Voici un exemple :
+
+Réf <a href="collapse_panel_buttons.html" target="_blank">Collapse &amp; Panel &amp; Buttons</a>
+
+<h3>7.) Utilisation des événements</h3>
+
+Il y a plusieurs événements utilisables pour ce composant :
+
+<figure>
+<img src="events_collapse.jpg" alt="Evénements de Collapse">
+<figcaption>Evénements du composant Collapse</figcaption>
+</figure>
+
+Voici un exemple d'utilisation de l'événement <strong>shown.bs.collapse</strong> :
+
+Réf <a href="collapse_panel_final.html" target="_blank">Collapse &amp; Panel : le final</a>
+
+Voyons à présent un second exemple, en reprenant l'effet accordéon sur une liste groupée vu plus haut. Il serait très esthétique de modifier l'icône en fonction
+de la visibilité de la liste. Il suffit de modifier légèrement le code en identifiant la liste et en ajoutant un peu de JavaScript :
+
+Réf <a href="collapse_panel_list_final.html" target="_blank">Collapse &amp; Panel &amp; List-group : le final</a>
+
+<h3>8.) Une barre de navigation rétractable</h3>
+
+Une utilisation du composant accordéon consiste à rendre une barre de navigation rétractable selon la dimension de l'affichage, en d'autres termes de la rendre
+<strong>responsive</strong>. Je l'ai fait pour la page d'exemple. Voici la partie concernée :
+
+Réf <a href="collapse_navbar.html" target="_blank">Collapse &amp; navbar</a>
+
+On ajoute un bouton chargé de commander l'effet accordéon. Ensuite, on englobe tout ce qui doit subir l'effet avec les classes <strong>collapse</strong> et
+<strong>navbar-collapse</strong>. Par défaut, le point de transition (c'est-à-dire de déclenchement de l'effet) se produit lorsque l'affichage est inférieur
+à 768 pixels. Il est possible de changer ce point de transition en modifiant le fichier LESS de Bootstrap. Je verrai dans un prochain chapitre comment justement
+modifier Bootstrap pour l'adapter à mes besoins. 
+
+<h2>IX./ Le Scrollspy</h2>
+<h3>1.) Mise en page avec le Scrollspy</h3>
+
+Ce plugin permet de relier automatiquement des éléments de navigation avec des zones HTML en utilisant un défilement. Comme un exemple est plus facile illustratif
+qu'une explication, surtout pour ce genre de fonctionnement, voici un style de mise en page de plus en plus utilisé sur les sites :
+
+Réf <a href="scrollspy.html" target="_blank">Scrollspy</a>
+
+Le principe est simple. Il faut mettre le plugin avec l'attribut <strong>data-spy="scroll"</strong> et on pointe vers la navigation avec 
+<strong>data-target</strong> :
+
+<strong>
+&lt;body data-spy="scroll" data-target=".navbar">
+</strong>
+
+Ensuite on crée la navigation qui pointe des zones à faire apparaître sans ajout d'autres classes, le fonctionnement est automatique.
+
+<h3>2.) Un mouvement fluide</h3>
+
+L'exemple fonctionne correstement, mais on peut regretter la brutalité du mouvement. La zone demandée s'affiche spontanément et on ne comprend pas vraiment
+qu'il se produit un défilement. Il serait élégant d'avoir un mouvement fluide pour passer d'une zone à une autre. Ce n'est pas prévu au niveau du plugin, mais
+avec quelques lignes de JavaScript, on peut réaliser cela :
+
+Réf <a href="scrollspy2.html" target="_blank">Scrollspy 2</a>
+
+<h3>3.) Activation par JavaScript</h3>
+
+On a vu dans l'exemple que le plugin peut être simplement mis en oeuvre avec un attribut "data". Il est aussi possible de le faire en JavaScript. Pour tester
+cette possibilité, il faut retirer les attributs de la balise <strong>body</strong> et ajouter cette ligne de JavaScript :
+
+<strong>
+$('body').scrollspy({target: '.navbar' }); 
+</strong>
+
+<h3>4.) Evénements</h3>
+
+Je dispose aussi de l'événement <strong>active.bs.scrollspy</strong> qui est déclenché lorsqu'une nouvelle zone est affichée. L'utilité de cet événement n'est
+pas évident, mais voici sa syntaxe :
+
+<strong>
+$('#monScrollspy').on('active.bs.scrollspy', function() {
+	// Code...
+});
+</strong>
+
+<h2>En résumé</h2>
+	-	Bootstrap propose une collection de plugins jQuery faciles à mettre en oeuvre. 
+	-	Les menus déroulants permettent l'affichage de liens textuels, auxquels on peut adjoindre des icônes et des en-têtes. Ils peuvent s'intégrer à une 
+			barre de nivigation ou un bouton. On peut réaliser des sous-menus en ajoutant quelques styles au framework.
+	-	Les fenêtres modales permettent de faire apparaître des informations. Elles peuvent comporter un titre, un contenu et un base de page. On peut même y
+			injecter une paga HTML.
+	-	Les onglets  permettent sur un même espace d'afficher au choix plusieurs informations avec un simple clic. Les onglets sont faciles à organiser :
+			horizontales, empilés, à droite ou à gauche, simple liens ou boutons. On peut aussi intégrer un menu déroulant dans un onglet.
+	-	On peut créer des boutons "bascule", ou avec effet "radio" ou "checkbox", ou pour attente de processus.
+	-	Le carrousel permet de faire défiler des images avec possibilité d'ajouter une légende par image, des boutons de défilement et de régler la vitesse de 
+			défilement.
+	-	Les info-bulles permettent de faire apparaître un petit texte informatif en survolant un élément, les pop-overs également mais autorisent un contenu plus
+			riche.
+	-	L'effet accordéon permet de faire apparaître  ou disparaître  une zone de la page. Il est possible d'ajouter des en-têtes et d'intégrer des listes
+			groupées. On l'utilise en particulier pour rendre une barre de navigation rétractable.
+	-	Le Scrollspy permet aussi de relier automatiquement des éléments de nivigation avec des zones HTML en utilisant un défilement. Il est de plus en plus
+			utilisé sur les sites Web.
+
+<script src="bootstrap/js/jquery.js"></script>
+    <!-- Javascript de Bootstrap -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="../my_bootstrap.js" type="text/javascript"></script>
+</body>
+</html>

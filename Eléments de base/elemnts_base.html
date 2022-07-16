@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+<title>Eléments de base</title>
+</head>
+<body>
+                                                                      <h1>Eléments de base</h1>
+
+Une page Web contient du texte et des images, mais aussi un certain nombre d'éléments fréquents: listes, tableaux, formulaires, icônes, boutons. Créer une 
+harmonie dans la présentation de tous ces éléments n'est pas une tâche aisée. 
+
+Je vais voir comment Bootstrap permet de créer un rendu visuel cohérent pour que tous ces éléments cohabitent de façon esthétique.
+
+<h2>I./ Listes, descriptions et tableaux</h2>
+
+Voici le deuxième jet de la page web de test: 
+
+Réf <a href="exemple_page_1.html" target="_blank">Exemple de page 1</a>
+
+<h3>1.) Les listes</h3>
+<h4>a./ Style de base</h4>
+
+Bootstrap propose une mise en forme élégante des listes. J'en ai vue une sur la page d'exemple :
+
+<h5>Voici les sous-espèces des tigres :</h5>
+<br>
+<ul>
+   <li>Tigre de Sibérie</li>
+   <li>Tigre de Chine méridionale</li>
+   <li>Tigre de Bali</li>
+   <li>Tigre de d'Indochine</li>
+   <li>Tigre de Malaisie</li>
+   <li>Tigre de Java</li>
+   <li>Tigre de Sumatra</li>
+   <li>Tigre du Bengale</li>
+   <li>Tigre de la Caspienne</li>
+</ul>
+
+Donc, je n'ai même pas besoin d'ajouter une classe pour avoir ce rendu (pas vraiment différent du rendu d'une liste habituelle).
+
+<h4>b./ Sans style</h4>
+
+Il existe la classe <strong>list-unstyled</strong>, à appliquer à la balise &lt; ul>, ce qui donne donc &lt; ul class="list-unstyled">, qui supprime les puces. Voici
+le résultat sur la liste de la page :
+
+<img src="list.png" alt="Liste sans style">
+
+<h4>c./ En ligne</h4>
+
+Il peut arriver de vouloir une liste... en ligne. On pourrait dire que ce n'est pas vraiment une liste mais pourquoi pas ? On peut imaginer une utilisation pour un
+menu. Il suffit d'utiliser la classe suivante :
+
+<strong>
+list-inline
+</strong>
+
+Donc <strong>&lt; ul class="list-inline"></strong>. Voilà ce que ça donne sur la page :
+
+<img src="list-inline.jpg" alt="Liste en ligne">
+
+<h3>2.) Descrptions</h3>
+<h4>a./ Classique</h4>
+
+Les descriptions sont aussi bien traitées par Bootstrap. Par exemple, lorsque j'écris le code d'une liste de termes à définir, sans même avoir besoin d'ajouter
+une classe, voici le rendu que j'obtiens: 
+
+<figure>
+<img src="list-termes.jpg" alt="Liste des termes à définir">
+<figcaption>Une description verticale</figcaption>
+</figure>
+
+<h4>b./ Horizontal</h4>
+
+Pour obtenir une présentation horitontale, il suffit d'utiliser la classe suivante :
+
+<strong>
+dl-horizontal
+</strong>
+
+...ce qui donne &lt; dl class="dl-horizontal">. Voici à la figure suivante l'effet sur la même liste :
+
+<figure>
+<img src="list-termes-horizontal.jpg" alt="Liste des termes à définir">
+<figcaption>Une description horizontale</figcaption>
+</figure>
+
+<h3>3.) Les tableaux</h3>
+Plusieurs mises en forme sont prévues pour les tableaux. Cf l'exemple de page N°1. Analysons les classes utilisées...
+
+<h4>a./ Classe "table"</h4>
+
+C'est la classe de base pour les tableaux, elle fixe quelques styles et crée des lignes de séparation horizontales :
+
+<figure>
+<img src="table.jpg" alt="Effets de la classe table">
+<figcaption>Effets de la classe table</figcaption>
+</figure>
+
+<h4>b./ Classe "table-bordered"</h4>
+
+C'est la classe pour avoir des bordures :
+
+<strong>
+&lt; table class="table table-bordered">
+</strong>
+
+Ce qui donne la figure suivante: 
+
+<figure>
+<img src="table-bordered.jpg" alt="Effets de la classe table-bordered">
+<figcaption>Effets de la classe table-bordered</figcaption>
+</figure>
+
+<h4>c./ Classe "table-striped"</h4>
+
+Cette classe ajoute un fond gris très léger sur les lignes impaires :
+
+<strong>
+&lt; table class="table table-bordered table-striped">
+</strong>
+
+<figure>
+<img src="table-striped.jpg" alt="Effets de la classe table-striped">
+<figcaption>Effets de la classe table-striped</figcaption>
+</figure>
+
+<h4>d./ Classe "table-condensed"</h4>
+
+Cette classe permet de condenser le tableau pour qu'il occupe moins de place verticalement :
+
+<strong>
+&lt; table class="table table-bordered table-striped table-condensed">
+</strong>
+
+Ce qui donne la figure suivante :
+
+<figure>
+<img src="table-condensed.jpg" alt="Effets de la classe table-condensed">
+<figcaption>Effets de la classe table-condensed</figcaption>
+</figure>
+
+<h4>e./ Tableau adaptable avec la classe "table-responsive"</h4>
+
+Que se passe-t-il pour un tableau quand on réduit la largeur de l'affichage ? Les colonnes du tableau se réduisent en conséquence jusqu'à rendre l'apparence ni
+très esthétique, ni très lisible de la figure suivante :
+
+<figure>
+<img src="table-retreci.jpg" alt="Tableau sans la classe table-responsive">
+<figcaption>Effets sans la classe table-responsive</figcaption>
+</figure>
+
+En englobant le tableau avec la classe <strong>table-responsive</strong>, on fait appraître une barre de défilement lorsque la largeur de l'affichage passe au-
+dessous de 768px (voir figure suivante) :
+
+<strong>
+&lt; section class="col-sm-8 table-responsive">
+  &lt; table class="table table-bordered table-striped table-condensed">
+</strong>
+
+<figure>
+<img src="table-responsive.jpg" alt="Effets de la classe table-responsive">
+<figcaption>Barre de défilement avec la classe table-responsive</figcaption>
+</figure>
+
+<h4>f./ Un peu de couleur dans les tableaux</h4>
+
+J'ai la possibilité de colorer le fond des lignes des tableaux classes <strong>info, success, danger, warning</strong> et <strong>active</strong>. Voici le tableau
+de mon exemple, mais avec un peu de couleur :
+
+Réf <a href="exemple_page_1.html" target="_blank">Exemple de page 1</a>
+
+Mais évidemment cette possibilité de colorisation prend tout son sens dans une gestin dynamique de données, pour faire apparaître par exemple des enregistrements 
+possédant certaines caractéristiques.
+
+<h2>II./ Formulaires</h2>
+<h3>1.) Formulaire de base</h3>
+
+Si on n'utilise aucune classe particulière dans une balise &lt; form>, on obtient une disposition en ligne. Prenons l'exemple d'un formulaire simple :
+
+<strong>
+&lt; form>
+  &lt; legend>Légende&lt; /legend>
+  Text : &lt; input type="text">
+  Textarea : &lt; textarea id="textarea">&lt; /textarea>
+  Select : 
+    &lt; select>
+       &lt; option>Option 1&lt; /option>
+       &lt; option>Option 2&lt; /option>
+       &lt; option>Option 3&lt; /option>
+    &lt; /select>
+  &lt; button>Envoyer&lt; /button>
+&lt; /form>
+</strong>
+
+Et j'aurai un rendu similaire à celui de la figure suivante :
+
+<figure>
+<img src="form.jpg" alt="Un formulaire sans style">
+<figcaption>Un formulaire sans style</figcaption>
+</figure>
+
+Par défaut, les contrôles s'alignent horizontalement. J'aimerais que les contrôles occupent toute la lageur possible. Il faut utiliser la classe 
+<strong>form-control</strong> sur chacun des champs pour obtenir cet effet (voir figure suivante).
+
+<figure>
+<img src="form-control.jpg" alt="Effets de la classe form-control">
+<figcaption>Effets de la classe form-control</figcaption>
+</figure>
+
+On se rend compte que cette classe ne se contente pas d'élargir les contrôles, elle procède aussi à une mise en forme esthétique. Arrangeons encore ce
+formulaire en utilisant des balises &lt; label> et écartons un peu le bouton :
+
+Réf <a href="form.html" target="_blank">Formulaire</a>
+
+On a gagné en esthétique. On peut encore améliorer l'espacement en utilisant la classe <strong>form-group</strong> :
+
+Réf <a href="form2.html" target="_blank">Formulaire 2</a>
+
+Ainsi, le formulaire est bien aéré et j'ai enlever la balise &lt; br> qui me servait à espacer le bouton.
+
+<h3>2.) La page d'exemple</h3>
+
+Réf <a href="exemple_page_2.html" target="_blank">Page d'exemple 2</a>
+
+Au niveau du style, juste une petite touche :
+
+<strong>
+body { background-color: #DDD; }
+[class*="col"] { margin-bottom: 20px; }
+img { width: 100%; }
+.well {
+	background-color: #CCC;
+	padding: 20px;
+}
+</strong>
+
+Le fond d'un léger gris met bien en valeur le texte et les photos. Quant au formulaire (concerné par la classe <strong>well</strong>), c'est l'objet de ce
+chapitre...
+
+<h4>a./ Les classes "radio" et "checkbox"</h4>
+
+Bootstrap propose l'utilisation d'une classe particulière pour les cases à cocher (checkbox) et les zones d'option (radio). Je l'ai utilisée dans le 
+formulaire de la page d'exemple N°2.
+
+<h4>b./ La classe well, un peu de style, un joli bouton et un texte d'aide</h4>
+
+La classe <strong>well</strong> provoque une jolie stylisation (change la dimension et la couleur de fond). 
+On peut ajuster la dimension en ajoutant la classe <strong>well-lg</strong> pour agrandir ou <strong>well-sm</strong> pour réduire. 
+
+Note : dans la page d'exemple 2, j'ai aussi peaufiné en ajoutant des règles de style à la page...
+
+La dernière touche a consisté à améliorer l'aspect du bouton avec 2 classes que je verrai plus loin dans le cours :
+
+<strong>
+&lt; button class="btn btn-primary" type="submit">Envoyer&lt; /button>
+</strong>
+
+Il ne reste plus qu'à rendre plus discret le texte d'aide situé au-dessous de la zone de texte, ce que j'accomplirai avec la classe 
+<strong>help-block</strong> :
+
+<strong>
+&lt; p class="help-block">Vous pouvez agrandir la fenêtre&lt; /p>
+</strong>
+
+<h3>3.) Formulaire horizontal</h3>
+
+Pour réaliser un formulaire horizontal, je vais utiliser tout ce que je viens de voir en exploitant la classe <strong>form-horizontal</strong> et une grille
+pour positionner les étiquettes et les contrôles :
+
+Réf <a href="form3.html" target="_blank">Formulaire 3</a>
+
+Les étiquettes disposent de 2 colonnes et les champs de saisie de 10 colonnes. On peut voir l'utilisation de la classe <strong>pull-right</strong> pour
+envoyer le bouton vers la droite. L'alignement à droite des étiquettes est réalisé par la classe <strong>control-label</strong>. Voici à la figure suivante
+une visualisation du découpage.
+
+<figure>
+<img src="form-horizontal.jpg" alt="Décryptage du formulaire horizontal">
+<figcaption>Décryptage du formulaire horizontal</figcaption>
+</figure>
+
+<h3>4.) Formulaire en ligne</h3>
+
+Il arrive qu'on ait besoin d'avoir un formulaire disposé sur une ligne, par exemple dans une barre de navigation. Je sais ce que donne un formulaire 
+élémentaire sans retour à la ligne, et ce n'est pas très joli. Je peux arranger ça avec tout ce que j'ai vu et en précisant la classe 
+<strong>form-inline</strong> :
+
+Réf <a href="form4.html" target="_blank">Formulaire en ligne</a>
+
+C'est beaucoup mieux (ou juste un peu) ! 
+
+Note : j'ai utilisé une étiquette invisible pour la zone de texte. Il est conseillé d'avoir toujours une étiquette pour chaque contrôle pour les lecteurs
+d'écran (accessibilité), la classe <strong>sr-only</strong> permet de rendre cette étiquette invisible.
+
+<h3>5.) Les classes input-group, input-group-addon et input-group-btn à l'oeuvre</h3>
+<h4>a./ Accoler une information à un contrôle</h4>
+
+Les classes <strong>input-group</strong> et <strong>input-group-addon</strong> servent à accoler une information à un contrôle de formulaire :
+
+Réf <a href="form5.html" target="_blank">Formulaire en ligne avec input-group-addon</a>
+
+Toujours dans le même exemple, on peut aussi les utiliser conjoitement pour accoler devant et derrière.
+
+<h4>b./ Accoler un bouton à un contrôle</h4>
+
+On peut aussi accoler un bouton avec la classe <strong>input-group-btn</strong> :
+
+<a href="form5_bis.html" target="_blank">Formulaire en ligne avec input-group-btn</a>
+
+Note : J'en ai même accolé un addon et deux boutons...
+
+<h4>c./ Accoler une case à cocher ou un bouton radio à un contrôle</h4>
+
+Réf <a href="form6.html" target="_blank">Formulaire 6</a>
+
+<h3>6.) Dimensions des contrôles</h3>
+
+Pour ajuster un formulaire, il est parfois utile de jouer sur la taille des contrôles. Pour ce faire, Bootstrap propose les classes suivantes :
+
+<strong>
+input-lg : pour agrandir un champs 
+input-sm : pour rétrécir un champs
+</strong>
+
+Réf <a href="form7.html" target="_blank">Formulaire 7</a>
+
+Note : on joue ici uniquement sur la hauteur du contrôle, la largeur étand définie par la grille.
+
+<h3>7.) Stylisation selon l'état</h3>
+
+Bootstrap embarque des classes de stylisation des zones de saisie selon l'état. Voici un exemple :
+
+Réf <a href="form8.html" target="_blank">Formulaire 8 : stylisation des champs</a>
+
+La version 3.1 de Bootstrap a prévu la possibilité d'ajouter une icône pour améliorer l'effet visuel. Je verrai comment Bootstrap permet d'utiliser des 
+icônes dans le chapitre suivant. Ici, je vais juste compléter l'exemple précédent, sans rien expliquer, en y ajoutant des icônes.
+
+Réf <a href="form8_bis.html" target="_blank">Formulaire 8 avec des icônes</a>
+
+<p class="warning">Attention: les icônes dans les contrôles ne fonctionnent que pour les balises input qui comportent la classe form-control</p>
+
+Dans ces exemples, il y a peu d'actions possibles car, pour le moment, je n'ai pas prévu d'interactivité. Alors, un petit exemple : je vais faire un
+formulaire pour lequel je vais tester la saisie pour vérifier que le texte fait au moins 4 caractères. Si ce n'est pas le cas, on change le style de la zone de
+texte et on fait appraître un message d'avertissement, comme à la figure suivante :
+
+<figure>
+<img src="form-interactif.jpg" alt="Formulaire interactif">
+<figcaption>Formulaire interactif avec un message à afficher</figcaption>
+</figure>
+
+Tant qu'à faire, on veut aussi que le message d'avertissement disparaisse au bout de 4 secondes et que le tout se fasse avec fluidité. En combinant Bootstrap
+et jQuery, c'est un jeu d'enfant :
+
+Réf <a href="form-interactif.html" target="_blank">Formulaire interactif</a>
+
+<h3>8.) Un générateur de formulaires</h3>
+
+Le site <a href="https://bootsnipp.com/" target="_blank">bootstrip</a> propose un <a href="https://bootsnipp.com/forms" target="_blank">générateur de 
+formulaires</a> pour Bootstrap (voir figure suivante).
+
+<figure>
+<img src="form-generator.jpg" alt="Générateur de Formulaires">
+<figcaption>Un générateur de formulaires pour Bootstrap</figcaption>
+</figure>
+
+On construit le formulaire avec de simples glisser-déposer. On renseigne ensuite les paramètres avec un formulaire qui apparaît en fenêtre modale. A la fin,
+on n'a plus qu'à copier le code HTML. On ne peut réaliser que des formulaires horizontaux, mais une adaptation du code permet facilement de réaliser d'autres
+sortes de formulaires. 
+
+<h2>III./ Boutons, icônes et images</h2>
+<h3>1.) La page d'exemple</h3>
+
+Voici la nouvelle version de la page d'exemple :
+
+Réf <a href="exemple_page_3.html" target="_blank">Page d'exemple 3</a>
+
+Qu'y a-t-il de nouveau ? Déjà un formulaire de recherche dans la partie supérieure droite, avec une zone de texte et un bouton muni d'une icône. Le traitement
+de <i>responsive</i> pour ce formulaire est particulièrement remarquable.
+Les vignettes des images ont désormais leurs coins arrondis grâce à la classe <strong>img-rounded</strong>. Le bouton du formulaire de 
+contact a hérité d'une icône également.
+
+Je vais passer en revue ces nouveautés  et détailler les possibilités de Bootstrap pour les boutons, les icônes et les images.
+
+<h3>2.) Des jolis boutons</h3>
+<h4>a./ Les boutons standards</h4>
+
+Pour créer un bouton avec Bootstrap il suffit d'ajouter les classes <strong>btn</strong> et <strong>btn-default</strong> à une balise &lt; button>, &lt; a>
+ou encore &lt; input> :
+
+<strong>
+&lt; button type="button" class="btn btn-default">Bouton de base&lt; /button>
+&lt; a class="btn btn-default" href="#">Bouton avec lien&lt; /a>
+&lt; input type="button" class="btn btn-default" value="Bouton avec input">
+</strong>
+
+Ce qui me donne la figure suivante :
+
+<figure>
+<img src="btn-default.jpg" alt="Apparence des boutons">
+<figcaption>Apparence des boutons Bootstrap standards</figcaption>
+</figure>
+
+Le rendu est le même, tout dépend du contexte d'utilisation.
+
+<h4>b./ Les différentes types de boutons</h4>
+
+L'aspect par défaut est un gris avec le fond blanc. Il existe d'autres possibilités plus colorées :
+
+<strong>
+&lt; button type="button" class="btn btn-primary">Bouton standard&lt; /button>
+&lt; button type="button" class="btn btn-success">Réussite&lt; /button>
+&lt; button type="button" class="btn btn-info">Information&lt; /button>
+&lt; button type="button" class="btn btn-warning">Avertissement&lt; /button>
+&lt; button type="button" class="btn btn-danger">Danger&lt; /button>
+&lt; button type="button" class="btn btn-link">Lien&lt; /button>
+</strong>
+
+Ce qui donne les boutons visibles à la figure suivante :
+
+<figure>
+<img src="btn-.jpg" alt="Apparence des boutons">
+<figcaption>Des boutons colorés</figcaption>
+</figure>
+
+A utiliser selon les situations et à faire varier selon l'humeur !
+
+<h4>c./ Dimension des boutons</h4>
+
+On peut aussi ajouter la dimension du bouton : 
+
+<strong>
+&lt; button type="button" class="btn btn-primary btn-lg">Grand Bouton&lt; /button>
+&lt; button type="button" class="btn btn-primary">Bouton standard&lt; /button
+&lt; button type="button" class="btn btn-primary btn-sm">Petit bouton&lt; /button>
+&lt; button type="button" class="btn btn-primary btn-xs">Très petit bouton&l; /button>
+</strong>
+
+<figure>
+<img src="btn_sizes.jpg" alt="Dimension des boutons">
+<figcaption>Pluieurs dimensions de boutons</figcaption>
+</figure>
+
+<h4>d./ Boutons "block"</h4>
+
+La classe <strong>btn-block</strong> règle la dimension du bouton sur la dimension de son contenant. Voici un exemple :
+
+Réf <a href="bouton.html" target="_blank">Bouton N°1</a>
+
+<h4>e./ >Grouper des boutons</h4>
+
+Il est possible de grouper des boutons horizontalement avec la classe <strong>btn-group</strong>. Ce groupement peut s'effectuer aussi verticalement avec la 
+classe <strong>btn-group-vertical</strong>. Voici un exemple avec les deux groupements :
+
+Réf <a href="bouton2.html" target="_blank">Bouton N°2</a>
+
+Il est possible de créer des organisations plus complexes avec la classe <strong>btn-toolbar</strong> :
+
+Réf <a href="bouton3.html" target="_blank">Bouton N°3</a>
+
+On peut dimensionner un groupement :
+
+Réf <a href="bouton4.html" target="_blank">Bouton N°4</a>
+
+<h4>f./ Boutons justifiés</h4>
+
+Si je souhaite que mes boutons se répartissent harmonieusement et uniformément dans un contenant, je dois utiliser la classe <stron>btn-group-justified</stron>
+en plus de <strong>btn-group</strong> :
+
+Réf <a href="bouton5.html" target="_blank">Bouton N°5</a>
+
+Cet exemple utilise des balises &lt; a>. On peut réaliser la même chose avec des balises &lt; button> ou &lt; input> à condition d'utiliser la classe 
+<strong>&lt; btn-group</strong>
+pour chaque bouton :
+
+Réf <a href="bouton5.html" target="_blank">Bouton N°5</a>
+
+<h4>g./ Des générateurs de boutons</h4>
+
+Le site bootsnipp propose également un <a href="https://bootsnipp.com/buttons" target="_blank">générateur de boutons</a> simple à utiliser.
+
+<h4>h./ Boutons personnalisés</h4>
+
+Et si je veux des styles différents pour mes boutons et sortir des couleurs standards de Bootstrap, je peux créer mes propres styles. Si je ne suis pas très
+inspiré, il existe un générateur simple et pratique sur le site <a href="http://charliepark.org/bootstrap_buttons/" target="_blank">charliepark.org</a>.
+
+Il suffit de récupérer le code et de l'insérer dans ma feuille de style. 
+
+L'intégration dans un bouton (ou autre) est simple :
+
+<strong>
+&lt; button type="button" class="btn btn-custom">Mon beau bouton&lt; /button>
+</strong>
+
+<h3>3.) De jolies icônes</h3>
+<h4>a./ Les icônes de Glyphicons</h4>
+
+Bootstrap propose 200  icônes de <a href="https://glyphicons.com/" target="_blank">Glyphicons</a>. L'intégration d'une icône  est facile parce qu'il suffit
+d'utliser la balise &lt; span>. Pour le formulaire de contact de la page d'exemple, le bouton est amélioré en le complétant par une icône :
+
+<strong>
+&lt; button class="btn btn-primary" type="submit">&lt; span class="glyphicon glyphicon-ok-sign">&lt; /span> Envoyer&lt; /button>
+</strong>
+
+La syntaxe est toute simple. On utilise une balise &lt; span> avec deux classes. La principale est <strong>glyphicon</strong> suivi de la classe qui 
+correspond à l'icône à afficher <strong>glyphicon-*</strong>. On peut ainsi créer d'élégantes barres de boutons :
+
+Réf <a href="icon.html" target="_blank">Les icônes</a>
+
+Question : et si on veut une icône colorée ? 
+
+Comme il s'agit de polices, il suffit d'utiliser du style :
+
+<strong>
+&lt; button class="btn btn-primary" type="submit">&lt; span class="glyphicon glyphicon-ok-sign" style="color:#4f4;">&lt; /span> Envoyer&lt; button>
+</strong>
+
+Ce qui me donne le résultat de la figure suivante :
+
+<figure>
+<img src="icon_colorée.jpg" alt="Icône colorée">
+<figcaption>Une icône colorée</figcaption>
+</figure>
+
+Note : on peut mettre ces icônes ailleurs que sur des boutons... Partout où l'on peut écrire en fait !
+
+Rien n'empêche évidemment de sauter des lignes. On peut ainsi créer des boutons en séparant bien l'icône du texte : 
+
+<a href="icon2.html" target="_blank">Icône 2</a>
+
+<h4>b./ Des boutons ronds ?</h4>
+
+Il est facile, en ajoutant un peu de style, de créer des boutons ronds qui conviendront à merveille aux icônes. Voici un exemple de style ajouté :
+
+<strong>
+.btn-lg {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+}
+</strong>
+
+Et le  code HTML :
+
+Réf <a href="icon3.html" target="_blank">Icône 3</a>
+
+<h4>c./ Les icônesde Font Awesome</h4>
+
+Le site <a href="http://fontawesome.io/" target="_blank">Font Awesome</a> propose une collection de 675 icônes toutes prêtes pour Bootsrap. Evidemment elles
+ne sont pas intégrées de base dans Bootstrap et il faut déclarer le fichier CSS pour pouvoir les utiliser. Le site propose 
+<a href="http://fontawesome.io/get-started/" target="_blank">plusieurs possibilités</a> pour le faire :la plus  simple étant d'utiliser le CDN :
+
+<strong>
+&lt; link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</strong>
+
+Une fois le fichier CSS déclaré, je peux utiliser les icônes. L'icône doit être intégrée avec une balise en ligne, par exemple &lt; i>, que tous les exemples
+du site utilisent, mais d'un point de vue sémantique la balise &lt; span> serait plus adaptée. Le site propose une 
+<a href="http://fontawesome.io/examples/" target="_blank">galerie d'exemples</a>. On peut insérer une icône directement dans un texte :
+
+<strong>
+Il faut déverrouiller &lt; i class="fa fa-unlock">&lt; /i> pour sortir &lt; i class="fa fa-arrow-right">&lt; /i>
+</strong>
+
+Voir figure suivante :
+
+<figure>
+<img src="icon_fa.jpg" alt="Icône dans texte">
+<figcaption>Icônes dans du texte</figcaption>
+</figure>
+
+On peut aussi dimensionner les icônes selon le contexte :
+
+Réf <a href="icon4.html" target="_blank">Icône 4</a>
+
+On peut aussi très facilement créer une liste dont les éléments sont bien identifiés avec une icône :
+
+Réf <a href="icon4.html" target="_blank">Icône 4</a>
+
+Il existe bien d'autres possibilités comme la rotation des icônes, leur animation, leur empilement, que je peux découvrir en consultant 
+<a href="http://fontawesome.io/examples/" target="_blank">la page d'exemples</a> du site.
+
+<h3>4.) Mise en forme des images</h3>
+
+Bootstrap donne la possibilité de modifier l'apparence des bordures et des images. Il y a pour cela 3 classes utilisables :
+
+<figure>
+<img src="img_classes.jpg" alt="Tableau des classes pour images">
+<figcaption>Les 3 classes (à traduire en anglais !) pour images</figcaption>
+</figure>
+
+VOici un exemple illustratif de ces trois effets :
+
+Réf <a href="image.html" target="_blank">Les 3 classes pour images</a>
+
+Note : je peux également rendre les images adaptatives facilement avec la classe <strong>img-responsive</strong>. Cette classe possède 3 règles :
+
+<strong>
+display: block;
+max-width: 100%;
+height: auto;
+</strong>
+
+Le but est de faire en sorte que l'image occupe toute la place disponible de son contenant.
+
+<h2>En résumé</h2>
+
+Bootstrap permet une mise en forme élégante des listes, descriptions et tableaux.
+Bootstrap permet de réaliser des formulaires classiques, horizontaux ou en ligne. Il permet aussi d'enrichir les contrôles en jouant sur leur dimension ou leur 
+style.
+Bootstrap permet de créer des boutons colorés, seuls ou groupés, de diverses dimensions.
+Bootstrap comprend une collection d'icônes vectorielles faciles à intégrer comme des caractères.
+Bootstrap prévoie la mise en forme des images avec des coins arrondis ou avec un effet de diapositive.
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Javascript de Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="../my_bootstrap.js" type="text/javascript"></script>
+</pre>
+</body>
+</html>

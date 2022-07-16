@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<title>Les composants intégrés</title>
+</head>
+<body>
+
+                                                                 <h1>Les composants intégrés</h1>
+
+Bootstrap propose des composants pratiques à mettre en oeuvre : barres de navigation, effets typographiques, panneaux, thumbnails... et tout ça sans écrire une 
+seule ligne de code JavaScript. Je verrai aussi alertes et barres de progression qui demandent un peu de JavaScript pour être utilisées...
+
+<h2>I./ La navigation</h2>
+<h3>1.) La page d'exemple</h3>
+
+Voici le code ajouté à la page d'exemple pour l'équiper d'une barre de navigation :
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple N°1</a>
+
+<h3>2.) Une barre de navigation</h3>
+<h4>a./ Principe de base</h4>
+
+Bootstrap propose de superbes classes pour créer une barre de navigation. A la base, une barre nécessite juste les classes <strong>navbar</strong> et 
+<strong>navbar-default</strong> :
+
+<strong>
+&lt; nav class="navbar navbar-default">
+	Je suis une barre
+&lt; /nav>
+</strong>
+
+Ce code donne la figure suivante :
+
+<figue>
+<img src="barre.jpg" alt="Barre">
+<figcaption>Une simple barre</figcaption>
+</figue>
+
+La classe <strong>navbar</strong> est toute simple :
+
+<strong>
+.navbar {
+	position: relative;
+	min-height: 50px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+}
+</strong>
+
+Et la classe <strong>navbar-default</strong> fixe les couleurs du fond et de la bordure :
+
+<strong>
+.navbar-default {
+	background-color: #f8f8f8;
+	border-color: #e7e7e7;
+}
+</strong>
+
+Pourquoi 2 classes ? Je verrai plus loin qu'il est possible d'avoir une barre "inversée", avec une couleur de fond différente.
+
+Mais une barre vide ne sert pas à grand chose, en général on la garnit d'items. Voici un exemple :
+
+<strong>
+&lt; div class="navbar navbar-default">
+  &lt; ul class="nav navbar-nav">
+    &lt; li class="active"> &lt; a href="#">Accueil&lt; /a> &lt; /li>
+    &lt; li> &lt; a href="#">Liens&lt; /a> &lt; />
+    &lt; li> &lt; a href="#">Témoignages&lt; /a> &lt; /li>
+    &lt; li class="disabled"> &lt; a href="#">Préférences&lt; /a> &lt; /li>
+  &lt; /ul>
+&lt; /div>
+</strong>
+
+Les classes <strong>nav</strong> et <strong>navbar-nav</strong> doivent être utilisées avec une balise &lt; ul>. Tous les items de navigation apparaîssent alors
+avec des balises &lt; li>. L'item actif est repéré avec la classe <strong>active</strong>. Un item désactivé est défini avec la classe <strong>disabled</strong>.
+Voici à la figure suivante un aperçu de la barre.
+
+<figue>
+<img src="barre2.jpg" alt="Barre">
+<figcaption>Effet des classes navbar et navbar-default</figcaption>
+</figue>
+
+<h4>b./ Barre avec un fond noir</h4>
+
+Si je préfère une barre avec un fond noir, il suffit de remplacer la classe <strong>navbar-default</strong> par la classe <strong>navbar-inverse</strong> :
+
+<strong>
+&lt; div class="navbar navbar-inverse">
+  &lt; ul class="nav navbar-nav">
+    &lt; li class="active"> &lt;a href="#">Accueil&lt;/a> &lt;/li>
+    &lt; li> &lt;a href="#">Liens&lt;/a> &lt;/li>
+    &lt;li> &lt;a href="#">Témoignages&lt;/a> &lt;/li>
+    &lt;li class="disabled"> &lt;a href="#">Préférences&lt;/a> l&t;/li>
+  &lt;/ul>
+&lt;/div>
+</strong>
+
+On obtient alors le résultat de la figure suivante.
+
+<figue>
+<img src="barre3.jpg" alt="Barre">
+<figcaption>Un fond noir avec la classe navbar-inverse</figcaption>
+</figue>
+
+<h4>c./ Un titre dans la barre</h4>
+
+On peut faire apparaître un titre avec des caractères plus visibles avec la classe <strong>navbar-brand</strong> :
+
+<strong>
+&lt;div class="navbar navbar-default">
+  &lt;div class="navbar-header">
+    &lt;a class="navbar-brand" href="#">Mon beau site&lt;/a>
+  &lt;/div>
+  &lt;ul class="nav navbar-nav">
+    &lt;li class="active"> &lt;a href="#">Accueil&lt;/a> &lt;/li>
+    &lt;li> &lt;a href="#">Liens&lt;/a> &lt;/li>
+    &lt;li> &lt;a href="#">Témoignages&lt;/a> &lt;/li>
+    &lt;li> &lt;a href="#">Préférences&lt;/a> &lt;/li>
+    &lt;li> &lt;a href="#">Bibliographie&lt;/a> &lt;/li>
+  &lt;/ul>
+&lt;/div>
+</strong>
+
+Illustration :
+
+<figue>
+<img src="barre4.jpg" alt="Barre">
+<figcaption>Un titre dans la barre</figcaption>
+</figue>
+
+Le titre doit être inclus dans une classe <strong>navbar-header</strong> pour avoir un affichage correct sur les mobiles.
+
+<h4>d./ Fixer la barre</h4>
+
+A priori, on veut une barre de navigation dans la partie supérieure d'un site,  mais en général sous un bandeau. Avec le code tel qu'on l'a vu jusque-là, la barre
+se situe dans le flux. Mais on peut fixer la barre en haut de page du navigateur avec la classe <strong>navbar-fixed-top</strong> :
+
+<strong>
+&lt;p>Un paragraphe&lt;/p>
+&lt;div class="navbar navbar-default navbar-fixed-top">
+  &lt;div class="container">
+    &lt;div class="navbar-header">
+      &lt;a class="navbar-brand" href="#">Mon beau site&lt;/a>
+    &lt;/div>
+    &lt;ul class="nav navbar-nav">
+      &lt;li class="active"> &lt;a href="#">Accueil&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Liens&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Témoignages&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Préférences&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Bibliographie&lt;/a> &lt;/li>
+    &lt;/ul>
+  &lt;/div>
+&lt;/div>
+&lt;p>Un autre paragraphe&lt;/p>
+&lt;p>Encore un paragraphe&lt;/p>
+</strong>
+
+Illustration :
+
+<figue>
+<img src="barre5.jpg" alt="Barre">
+<figcaption>Barre fixée en haut de page</figcaption>
+</figue>
+
+<p class="warning">Attention: L'utilisation de la classe <strong>navbar-fixed-top</strong> impose la présence de la classe <strong>container</strong> ou 
+<strong>container-fluid</strong></p>
+
+La barre prend alors toute la largeur de la fenêtre. Les éléments de la page se déplacent sous la barre fixe en cas de scrolling. 
+
+Mais où sont passés les 2 premiers paragraphes pourrait-on se demander à juste titre...
+
+Eh bien, ils sont sous la barre ! Il suffit de regarder la classe pour comprendre :
+
+<strong>
+.navbar-fixed-top, .navbar-fixed-bottom {
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1030;
+}
+</strong>
+
+La barre est en positinnement fixe en haut de la page du navigateur avec un z-index assez conséquent... Donc si on adopte un positionnement fixe en haut de la page
+du navigateur, il faut prendre la précaution de ménager suffisamment d'espace pour que les éléments ne soient pas masqués par la barre : 
+
+<strong>
+&lt;link href="bootstrap/css/bootsrap.css" rel="stylesheet">
+&lt;style>
+	body { padding-top: 70px; }
+&lt;/style>
+</strong>
+
+Résultat :
+
+<figue>
+<img src="barre6.jpg" alt="Barre">
+<figcaption>Barre fixée en haut de la page avec espace réservé</figcaption>
+</figue>
+
+Il existe aussi la classe <strong>navbar-fixed-bottom</strong> pour fixer la barre en bas de la page. Mais les cas d'utilisation sont plus anecdotiques. Le 
+principe demeure le même.
+
+<h4>e./ Une barre statique</h4>
+
+Et si je désire que la barre suive le mouvement et ne soit plus collée au bord de la fenêtre (comme avec la classe navbar-fixed-top), mais au-dessus du contenu,
+de telle sorte que la barre disparaisse quand je fais défiler, je dois alors utiliser la classe <strong>navbar-static-top</strong> :
+
+<strong>
+&lt;div class="navbar navbar-default navbar-static-top">
+</strong>
+
+WTF : Je ne vois pas pourquoi j'uiliserais cette classe, puisqu'il suffit de ne pas utiliser l'autre classe pour que la barre ne soit pas fixée. La seule chose 
+que la classe <strong>navbar-static-top</strong> apporte de plus est, apparemment, l'arrondi de la barre qui devient rectangle.
+
+<h4>f./ Un formulaire de recherche dans la barre</h4>
+
+Pour intégrer un formulaire il suffit d'ajouter une balise &lt;form> avec la classe <strong>navbar-form</strong>. On a 2 classes pour décaler ce formulaire pour
+l'un des côtés :
+
+<strong>
+navbar-left : pour le fixer à gauche
+navbar-right : pour le fixer à droite
+</strong>
+
+Voici l'intégration pour ma page d'exemple :
+
+<strong>
+&lt;nav class="navbar navbar-inverse">
+  &lt;div class="container-fluid">
+    &lt;ul class="nav navbar-nav">
+      &lt;li class="active"> &lt;a href="#">Accueil&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Liens&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Témoignages&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Préférences&lt;/a> &lt;/li>
+      &lt;li> &lt;a href="#">Bibliographie&lt;/a> &lt;/li>
+    &lt;/ul>
+    &lt;form class="navbar-form navbar-right inline-form">
+      &lt;div class="form-group">
+        &lt;input type="search" class="input-sm form-control" placeholder="Recherche">
+        &lt;button type="submit" class="btn btn-primary btn-sm">&lt;span class="glyphicon glyphicon-ok-sign">&lt;/span> Chercher&lt;button>
+      &lt;/div>
+    &lt;/form>
+  &lt;/div>
+&lt;/nav>
+</strong>
+
+Illustration : 
+
+<figue>
+<img src="barre7.jpg" alt="Barre">
+<figcaption>Un formulaire dans la barre</figcaption>
+</figue>
+
+Je retrouve bien mon formulaire décalé à droite. Concernant la classe <strong>inline-form</strong>... Ce n'est pas une classe de Bootstrap ! Mais une classe
+qu'on a dû ajouter  pour obtenir un comportement correct du formulaire. Voilà ce qui se produit si je réduis la largeur de la fenêtre sans cette classe :
+
+<figue>
+<img src="barre8.jpg" alt="Barre">
+<figcaption>Réaction du formulaire à la réduction de l'affichage sans la classe inline-form</figcaption>
+</figue>
+
+J'ai en effet deux soucis : 
+
+	-	le contrôle prend la largeur
+	-	le bouton est renvoyé en-dessous
+
+Il faut donc que je modifie le display du contrôle et que je limite sa largeur. Ce qui est fait par la classe <strong>inline-form</strong> :
+
+<strong>
+.inline-form input {
+	dispay: inline-block;
+	width: 100px;
+}
+</strong>
+
+Maintenant, j'ai un affichage correct que l'on peut voir à la figure suivante :
+
+<figue>
+<img src="barre9.jpg" alt="Barre">
+<figcaption>Effet de la classe inline-form</figcaption>
+</figue>
+
+Et pourquoi ne pas utiliser la classe form-inline de Bootstrap ?
+
+Cette classe ne fonctionne que si la largeur d'affichage est d'au moins 768px, et c'est justement au-dessous qu'on rencontre le problème !
+
+<h4>g./ Bouton et texte dans une barre</h4>
+
+Il existe la classe <strong>navbar-btn</strong> pour intégrer un bouton dans une barre, mais qui doit être utilisée uniquement si le bouton n'appartient pas
+à un formulaire. Il y a aussi la classe <strong>navbar-text</strong> pour insérer du texte et la classe <strong>navbar-link</strong> pour afficher un lien
+en-dehors du menu (non inclus dans la classe nav). Voici un exemple :
+
+<strong>
+&lt;nav class="navbar navbar-default"&gt;
+  &lt;div class="navbar-header">
+    &lt;a href="#" class="navbar-brand">Un titre&lt;/a>
+  &lt;/div>
+  &lt;p class="navbar-text">Un simple texte&lt;/p>
+  &lt;button type="button" class="btn btn-default navbar-btn">Bouton&lt;/button>
+  &lt;p class="navbar-text">&lt;a href="#" class="navbar-link">Lien&lt;/a>&lt;/p>
+&lt;/nav>
+</strong>
+
+Ce qui donne :
+
+<figue>
+<img src="barre10.jpg" alt="Barre">
+<figcaption>Texte, bouton et lien dans la barre</figcaption>
+</figue>
+
+<h3>3.) La pagination</h3>
+<h4>a./ Un exemple simple</h4>
+
+Bootstrap propose la classe <strong>pagination</strong> pour réaliser... des paginations. Le principe est tout simple, voici un exemple de base :
+
+Réf <a href="exemple1.html" target="_blank">Exemple 1</a>
+
+<h4>b./ La dimensions</h4>
+
+Il y a 3 possibilités de dimension pour la pagination : 
+
+<strong>
+	-	Pour la dimension petite => pagination-sm
+	-	Pour la dimension XXL => pagination-lg
+	-	Et pour la dimension normale, genre moyenne => rien du tout
+</strong>
+
+Réf <a href="exemple2.html" target="_blank">Exemple 2</a>
+
+<h4>b./ Un cas pratique</h4>
+
+On va utiliser cette possibilité de pagination sur un exemple pratique à partir des photos de tigres que j'utilise dans ma page de démonstration. Le but est de 
+faire défiler les images 3 par 3. Pour définir la page actuelle on utilise la classe <strong>active</strong> (à appliquer à une balise &lt; li>) :
+
+<a href="exemple3.html" target="_blank">Exemple 3</a>
+
+<h4>c./ Pagination esthétique</h4>
+
+Une autre possibilité de pagination simple consiste à utiliser la classe <strong>pager</strong> :
+
+<strong>
+&lt;ul class="pager">
+  &lt;li>&lt;a href="#">Précédent&lt;/a>&lt;/li>
+  &lt;li>&lt;a href="#">Suivant&lt;/a>&lt;/li>
+&lt;/ul>
+</strong>
+
+Ce qui donne :
+
+<figue>
+<img src="pagination.jpg" alt="Pagination">
+<figcaption>Pagination esthétique</figcaption>
+</figue>
+
+Par défaut, les boutons sont centrés. Pour disposer de part et d'autre, il faut utiliser les classes <strong>previous</strong> et <strong>next</strong> :
+
+<strong>
+&lt;ul class="pager col-lg-4">
+  &lt;li class="previous">&lt;a href="#">&lt;span class="glyphicon glyphicon-backward">&lt;/span> Précédent&lt;/a>&lt;/li>
+  &lt;li class="next">&lt;a href="#">Suivant &lt;span class="glyphicon glyphicon-forward">&lt;/span>&lt;/a>&lt;/li>
+&lt;/ul>
+</strong>
+
+On obtient alors le résultat visible à la figure suivante :
+
+<figue>
+<img src="pagination2.jpg" alt="Pagination">
+<figcaption>Boutons décalés avec les classes previous et next</figcaption>
+</figue>
+
+<h3>4.) Aide à la navigation</h3>
+
+L'aide à la navigation suit le même principe que la pagination, avec la classe <strong>breadcrumb</strong> dans la balise &lt;ul> et l'utilisation de la classe
+<strong>active</strong> pour définir l'élément actif :
+
+<strong>
+&lt;ul class="breadcrumb">
+  &lt;li class="active">&lt;a href="#">Accueil&lt;/a>&lt;/li>
+  &lt;li>&lt;a href="#">Témoignages&lt;/a>&lt;/li>
+  &lt;li>&lt;a href="#">Chasseurs&lt;/a>&lt;/li>
+&lt;/ul>
+</strong>
+
+Ce qui donne :
+
+<figue>
+<img src="aide_navigation.jpg" alt="Aide à la navigation">
+<figcaption>Effet de la classe breadcrumb</figcaption>
+</figue>
+
+Remarque : la classe <strong>active</strong> ne semble avoir aucun effet (Réf <a href="exemple4.html" target="_blank">Exemple 4</a>).
+
+<h2>II./ Effets typographiques et thumbnails</h2>
+<h3>1.) La page d'exemple</h3>
+
+Pour la nouvelle version de la page d'exemple, on va avoir une amélioration de la présentation des photos avec le composant <strong>thumbnails</strong> et des
+badges dans la liste des tigres, comme à la figure suivante :
+
+<figue>
+<img src="page_exemple.jpg" alt="Page d'exemple">
+<figcaption>Page d'exemple</figcaption>
+</figue>
+
+<h3>2.) Jumbotron</h3>
+<h4>a./ Jumbotron contenu</h4>
+
+La classe <strong>jumbotron</strong> permet de rendre le texte très visible. Prenons un exemple :
+
+<strong>
+&lt;h1>Coucou&lt;/h1>
+&lt;p>et bonjour&lt;/p>
+&lt;div class="jumbotron">
+  &lt;h1>Coucou&lt;/h1>
+  &lt;p>et bonjour&lt;/p>
+&lt;/div>
+</strong>
+
+Ce qui donne : 
+
+<figue>
+<img src="jumbotron.jpg" alt="Jumbotron">
+<figcaption>La classe jumbotron</figcaption>
+</figue>
+
+On voit bien la différence avec et sans la classe <strong>jumbtoron</strong>. 
+Voyons cette classe :
+
+<strong>
+.jumbotron {
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+	color: inherit;
+	background-color: #eee;
+}
+</strong>
+
+<h4>b./ Jumbotron pleine largeur</h4>
+
+Pour édulcorer mon site d'un magnifique panneau occupant toute la largeur de la page, comme on en fait sur certains sites, je me sers de la classe 
+<strong>jumbotron</strong>, mais il faut organiser le code différemment. Il ne faut pas le mettre dans un conteneur, en revanche il faut en prévoir un à 
+l'intérieur. Voici un exemple :
+
+Réf <a href="jumbotron.html" target="_blank">Jumbotron</a>
+
+Il est facile avec un peu de style ajouté de personnaliser le jumbotron (genre <strong>color</strong> et <strong>background-color</strong> différents).
+
+<h3>3.) Des libellés colorés</h3>
+
+Pour créer des repères visuels textuels attractifs, il est possible de créer de beaux libellés : 
+
+Réf <a href="libelles.html" target="_blank">Libellés</a>
+
+Ces libellés s'adaptent en dimension : 
+
+Réf <a href="libelles2.html" target="_blank">Libellés 2</a>
+
+J'ai utilisé un libellé dans le formulaire de contact de la page d'exemple :
+
+<strong>
+&lt;h4>&lt;span class="label label-default">Si vous voulez me laisser un message&lt;/span>&lt;/h4>
+&lt;h4>Comment m'avez-vous trouvé ?&lt;/h4>
+</strong>
+
+On obtient la figure suivante :
+
+<figue>
+<img src="libelles.jpg" alt="Libellés">
+<figcaption>Un libellé dans un formulaire</figcaption>
+</figue>
+
+<h3>4.) Des badges</h3>
+
+Les badges sont un peu comme les libellés, mais pour des informations plus courtes, idéalement des nombres :
+
+<strong>
+&lt;a href="#">Messages reçus &lt;span class="badge">42&lt;/span>&lt;/a>
+</strong>
+
+Ce qui donne :
+
+<figue>
+<img src="badges.jpg" alt="Badges">
+<figcaption>Un badge simple</figcaption>
+</figue>
+
+Comme le badge se trouve dans une balise &lt;span>, il est facile de l'intégrer par exemple à un bouton et de le colorer :
+
+<strong>
+&lt;button class="btn btn-danger">Envoi &lt;span class="badge text-success">42&lt;/span>&lt;/button>
+</strong>
+
+Ce qui donne :
+
+<figue>
+<img src="badges2.jpg" alt="Badge stylé">
+<figcaption>Stylisation du badge</figcaption>
+</figue>
+
+J'ai ajouté des badges sur la page d'exemple pour représenter le nombre de tigres :
+
+Réf <a href="badges.html" target="_blank">Badges</a>
+
+<h3>5.) Thumbnails</h3>
+
+Si j'ai des images, des vidéos ou autres éléments à afficher dans une grille, Bootstrap propose le composant Thumbnails très facile à mettre en oeuvre. Je reviens
+sur ma page d'exemple qui comporte de petites images de tigres. Le principe du Thumbnails est simple : il faut utiliser la classe <strong>thumbnail</strong>
+par exemple dans une balise &lt; a>. Voilà ce que ça donne pour la page d'exemple en supposant que les vignettes servent de liens :
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple</a>
+
+On obtient ainsi le même résultat qu'à la figure suivante :
+
+<figue>
+<img src="thumbnail.jpg" alt="Thumbnail">
+<figcaption>Effet de la classe thumbnail</figcaption>
+</figue>
+
+Illustration de l'effet quand on passe le curseur de la souris :
+
+<figue>
+<img src="thumbnail2.jpg" alt="Thumbnail">
+<figcaption>Effet du passage du curseur de la souris sur un thumbnail</figcaption>
+</figue>
+
+Je ne suis évidemment pas limité à afficher des images dans un thumbnail. Puisque je peux mettre cette classe dans un div ou autre, je peux garnir le thumbnail de
+ce que je veux. Par exemple, dans la page d'exemple, j'ai stylisé l'adresse avec cette classe.
+
+Ce qui a donné :
+
+<figue>
+<img src="thumbnail3.jpg" alt="Thumbnail">
+<figcaption>Classe thumbnail appliquée à une adresse</figcaption>
+</figue>
+
+<h2>III./ Listes groupés, panneaux et médias</h2>
+<h3>1.) La page d'exemple</h3>
+Je vais encore améliorer l'aspect de la page d'exemple avec une présentation de vidéos, comme à la figure suivante :
+
+<figue>
+<img src="media.png" alt="Classe media">
+<figcaption>Utilisation de la classe media</figcaption>
+</figue>
+
+On va aussi prévoir un panneau pour la liste des tigres et également pour le tableau, comme à la figure suivante :
+
+<figue>
+<img src="page_exemple2.jpg" alt="Classe media">
+<figcaption>Utilisation de la classe media</figcaption>
+</figue>
+
+<h3>2.) Les listes groupées</h3>
+
+Les listes groupées proposent une mise en forme des listes non ordonnées. Voici un premier exemple avec la visualisation d'une liste sans et avec formatage 
+pour comparer :
+
+Réf <a href="liste_group.html" target="_blank">Liste groupée</a>
+
+<h4>a./ Liste avec badges</h4>
+
+Il est possible d'ajouter des badges tout simplement en intégrant un &lt; span>, par défaut affiché à droite :
+
+Réf <a href="list_group2.html" target="_blank">Liste groupée 2</a>
+
+<h4>b./ Listes avec liens</h4>
+
+Les éléments de la liste peuvent aussi être des liens. Il suffit de prévoir des balises &lt; a> qui peuvent carrément remplacer les balies &lt; li>. L'item actif
+est repéré avec la classe <strong>active</strong> :
+
+Réf <a href="list_group3.html" target="_blank">Liste groupée 3</a>
+
+J'ai prévu des chevrons pour appuyer la sémantique des liens, ils sont poussés sur la droite avec la classe <strong>pull-right</strong>.
+
+<h4>c./ Un peu de couleur</h4>
+
+De nouvelles classes sont apparues avec la version 3.1 de Bootstrap qui permettent d'avoir un peu de couleur dans les listes groupées. Je trouverai un exemple
+illustratif ci-dessous :
+
+Réf <a href="list_group4.html" target="_blank">Liste groupée 4</a>
+
+<h4>d./ Contenus divers</h4>
+
+La liste est suffisamment versatile pour contenir des éléments variés. On peut avoir une en-tête avec la classe <strong>list-group-item-heading</strong>, et
+du texte avec la classe <strong>list-group-item-text</strong>, mais on peut également intégrer par exemple une image comme ceci :
+
+Réf <a href="list_group5.html" target="_blank">Liste groupée 5 : contenus divers</a>
+
+<h4>e./ Utilisation d'une liste groupée sur la page d'exemple</h4>
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple : la liste des tigres</a>
+
+<h3>3.) Les panneaux</h3>
+
+Les panneaux permettent d'isoler visuellement une partie de la page avec une bordure esthétique, titre, contenu et pied de panneau. Voici un exemple 
+élémentaire :
+
+Réf <a href="panneau.html" target="_blank">Panneau</a>
+
+Il y a aussi des classes pour créer un sens visuel pour ces panneaux :
+
+Réf <a href="panneau2.html" target="_blank">Panneau 2</a>
+
+<h4>a./ Utilisation avec une liste groupée</h4>
+
+Il est possible, comme je l'ai fait dans ma page d'exemple, d'intégrer une liste groupée dans un panneau :
+
+Réf <a href="page_exemple.html" target="_blank">Page d'exemple</a>
+
+<h4>b./ Utilisation dans un tableau</h4>
+
+On peut aussi intégrer un tableau (sans bordure) dans un panneau. 
+
+Réf <a href="page_exemple2.html" target="_blank">Page d'exemple 2 : tableau</a>
+
+<h3>4.) Les médias</h3>
+<h4>a./ Simple insertion</h4>
+
+L'objet média permet d'insérer une média (audio, image, vidéo) à gauche ou à droite d'un texte. C'est ce que j'ai prévu dans la page d'exemple avec une vidéo
+de tigre :
+
+Réf <a href="media.html" target="_blank">Media</a>
+
+==> Ca n'a pas marché à cauce de l'histoire de sameorigin policy. Et d'ailleurs, même avec une video locale, la classe semble n'avoir aucun effet. 
+Mais voici une illustration de ce que ça devrait donner comme résultat :
+
+<figue>
+<img src="media2.png" alt="Classe media">
+<figcaption>Utilisation de la classe media</figcaption>
+</figue>
+
+La classe <strong>media</strong> englobe l'ensemble. On utilise ensuite au choix <strong>media-right</strong> ou <strong>media-left</strong> pour le média. Le 
+corps de composant est défini par la classe <strong>media-body</strong> et on peut mettre un titre avec <strong>media-heading</strong>.
+
+<h4>b./ Liste des médias</h4>
+
+Une autre possibilité fort intéressante consiste à créer une liste de médias avec la classe <strong>media-list</strong>. Prenons l'exemple le cas d'un 
+forum, on peut imaginer ce type de scénario :
+
+Réf <a href="media2.html" target="_blank">Media 2 : forum</a>
+
+La classe <strong>thumbnail</strong> fait son retour ici pour permettre de bien isoler les commentaires et rendre le tout lisible.
+
+<h4>c./ Intégration de média</h4>
+
+La version 3.2 a vu apparaître une façon très pratique pour intégrer un média en ayant un ajustement automatique des dimensions. Voici un exemple avec le 
+ratio de 16 par 9 :
+
+<strong>
+&lt;div class="embed-responsive embed-responsive-16by9">
+  &lt;iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=XE2rtrdCF2s">&lt;/iframe>
+&lt;/div>
+</strong>
+
+<h2>IV./ Alertes et barres de progression</h2>
+
+Je vais voir maintenant 2 composants qui, bien que ne nécessitent pas de JavaScript pour leur présentation, en ont besoin pour leur mise en oeuvre.
+
+<h3>1.) Alertes</h3>
+<h4>a./ Utilisation de base</h4>
+
+Les aletes permettent de présenter un message visuellement significatif. Il suffit d'utiliser les classes <strong>alert</strong> et <strong>alert-warning</strong>:
+
+<strong>
+&lt;div class="alert alert-warning col-lg-3">
+  &lt;strong>Attention !&lt;/strong> Vous allez trop loin !
+&lt;/div>
+</strong>
+
+Ce qui donne :
+
+<figue>
+<img src="alert.jpg" alt="Classe alert">
+<figcaption>Une simple alerte</figcaption>
+</figue>
+
+<h4>b./ Les 3 variantes</h4>
+
+Trois autres classes permettent de changer l'aspect selon le résultat désiré :
+
+Réf <a href="alert.html" target="_blank">Alerte</a>
+
+<h4>c./ Un bloc d'information</h4>
+
+Si le texte doit être conséquent, il suffit d'écrire le code que l'on désire :
+
+Réf <a href="alert2.html" target="_blank">Alerte 2</a>
+
+<h4>c./ Un lien dans une alerte</h4>
+
+La classe <strong>alert-link</strong> permet d'insérer un lien esthétique dans une alerte :
+
+Réf <a href="alerts.html" target="_blank">Alertes</a>
+
+<h4>d./ Un bouton de fermeture</h4>
+
+Une fois qu'on a lu une alerte, on peut avoir envie de la fermer. Il suffit de prévoir un bouton et d'ajouter la classe <strong>alert-dismissable</strong> :
+
+Réf <a href="alerts.html" target="_blank">Alertes</a>
+
+<p class="warning">Attention : pour que le bouton de fermeture fonctionne il faut charger la librairie javascript de Bootstrap que je verrai au prochain 
+chapitre</p>
+
+<h4>e./ Utilisation dynamique</h4>
+
+Mais évidemment ces alertes ne trouvent leur sens que dans un contexte dynamique et je dois pouvoir les faire apparaître et disparaître quand le besoin se
+présente. Bootstrap prévoit un plugin qui ne me paraît pas vraiment utile, étant donné qu'on peut facilement gérer les alertes avec quelques lignes de 
+JavaScript dopées par jQuery :
+
+Réf <a href="alert3.html" target="_blank">Alerte 3</a>
+
+Un bouton adapté par la classe <strong>close</strong>a été prévu pour la fermeture de l'alerte. On pourrait également mettre un bouton normal.
+
+<h3>2.) Barres de progression</h3>
+
+Les barres de progression constituent une façon élégante de faire patienter l'utilisateur pendant une longue tâche. Elles ont aussi pour vocation de le rassurer
+et de lui indiquer approximativement le temps qu'il lui reste à attendre. Les classes <strong>progress</strong> et <strong>progress-bar</strong> permettent
+de réaliser facilement ce genre d'effet. Pour les exemples, je prévois un peu de code javascript pour simuler un processus temporel. Voici la barre de base
+
+Réf <a href="progress.html" target="_blank">Progress</a>
+
+Le code correspondant à la barre est surligné, le reste est juste l'intendance pour l'animer pour l'exemple.
+
+Il existe une version rayée de la barre avec la classe <strong>progress-striped</strong> :
+
+Réf <a href="progress2.html" target="_blank">Progress 2</a>
+
+Il existe également une version rayée et élégamment animée avec la classe <strong>active</strong> :
+
+Réf <a href="progress3.html" target=_"blank">Progress 3</a>
+
+Il est aussi prévu des couleurs différentes pour enrichir la sémantique de ces barres, que ce soit en version unie ou rayée :
+
+Réf <a href="progress4.html" target="_blank">Progress 4</a>
+
+Une dernière possibilité, enfin, consiste à empiler des barres :
+
+Réf <a href="progress5.html" target="_blank">Progress 5</a>
+
+Dans cette version empilée, on conserve la possibilité d'avoir des rayures, animées ou pas...
+
+<h2>En résumé</h2>
+
+Bootstrap permet de créer une barre de navigation fixe ou mobile qui peut comporter un titre, des liens, des boutons et des formulaires.
+Bootstrap possède un composant pour la navigation entre pages Web.
+Pour des effets visuels Bootstrap propose son Jumbotron, des libellés, des badges et des thumbnails pour les images.
+Les listes groupées peuvent comporter des badges, des liens, des images et être coloréees.
+Les panneaux permettent d'isoler visuellement une partie de la page et peuvent comporter un titre, ils peuvent intégrer facilement une liste groupée ou un
+tableau.
+Le composant <strong>media</strong> permet de proposer des images, des musiques, des vidéos.
+Bootstrap permet l'affichage de bandeaux d'alerte colorés et de barres de progression.
+
+<script src="jquery.js"></script>
+    <!-- Javascript de Bootstrap -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="../my_bootstrap.js" type="text/javascript"></script>
+</body>
+</html>

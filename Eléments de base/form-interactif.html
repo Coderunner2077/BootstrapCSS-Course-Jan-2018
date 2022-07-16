@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      [class*="col"] { margin-bottom: 20px; }
+      img { width: 100%; }
+    </style>
+    <title>Formulaire : stylisation des champs avec des icônes</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="col-lg-4">
+        <form class="form-inline well">
+          <div class="form-group">
+            <label class="sr-only" for="text">Saisie</label>
+            <input id="text" type="text" class="form-control" placeholder="Texte ici">
+          </div>
+          <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
+          <div class="alert alert-block alert-danger" style="display: none">
+            <h4>Erreur !</h4>
+            Vous devez entrer au moins 4 caractères !
+          </div>          
+        </form>
+    </div>
+
+    <script src="bootstrap/js/jquery.js"></script>
+    <script>
+      $(function() {
+        $('form').one('submit', function() {
+          $('div.form-group').addClass('has-feedback');
+          return false;
+        });
+        $('form').on('submit', function() {
+          if($('#text').val().length < 4) {
+            $('div.form-group').addClass('has-error').removeClass('has-success');
+            if($('.glyphicon').length < 1)
+              $('#text').after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
+            else
+              $('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+            $('div.alert').show('slow').delay(4000).hide('slow');
+
+            return false;
+          }
+          else {
+            $('div.alert').clearQueue().hide('fast');
+            $('div.form-group').addClass('has-success').removeClass('has-error');
+            if($('.glyphicon').length < 1)
+              $('#text').after('<span class="glyphicon glyphicon-ok form-control-feedback"></span>');
+            else
+              $('.glyphicon').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+
+            return false;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

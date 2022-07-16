@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+  	<head>
+    	  <meta charset="utf-8">
+    	  <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    	  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    	  <style type="text/css">
+    	  </style>
+    	  <title>Bouton 5</title>
+  	</head>
+
+  	<body>
+  		  <div class="container">
+            <a class="btn btn-primary" data-loading-text="Chargement en cours...">Chargez l'image !</a>
+            <div id="monImage"></div>
+        </div>
+
+        <script src="bootstrap/js/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script>
+            $(function() {
+                $('a').click(function() {
+                  with($(this)) {
+                    //this renvoie toujours à l'élémént Node "a" ici
+                    if(hasClass('btn-primary')) {
+                      removeClass('btn-primary').addClass('btn-warning').button('loading');
+                      var img = new Image;
+                      $('#monImage').html('');
+                      img.addEventListener('load', function() {
+                        removeClass('btn-warning').addClass('btn-primary').button('reset');
+                        $('#monImage').append(this);
+                      });
+                      setTimeout(function() {
+                        img.src = 'images/legumes.jpg';
+                      }, 2000);
+                    }
+                  }
+                });
+            });
+        </script>
+    </body>
+</html>
